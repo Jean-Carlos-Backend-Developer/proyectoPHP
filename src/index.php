@@ -1,23 +1,11 @@
-<?php include("templates/header.php"); ?>
-<?php include("datos.php"); ?>
-<?php include("utiles.php"); ?>
+<?php include_once("templates/header.php"); ?>
+<?php include_once("datos.php"); ?>
+<?php include_once("utiles.php"); ?>
 <?php
 
-
-/*==========================================================================================================================================*/
-//Ordenación
-/*UD 3.2.f
-Creo la variable $orden para capturar el valor que viene por la URL y en caso de que no venga
-le asigno null, luego uso un condicional para evaluar si el valor de la variable es "asc" o "desc" y 
-en función de eso ordeno el array $productos usando la función usort() y una función anónima que compara 
-los nombres de los productos en mayúsculas para evitar problemas de ordenación por mayúsculas y minúsculas.*/
-$orden = isset($_GET["orden"]) ? $_GET["orden"] : null; //$orden = $_GET['orden'] ?? null;
-
-if ($orden === "asc"):
-    ordenaPorNombreAsc($productos);
-elseif ($orden === 'desc'):
-    ordenaPorNombreDesc($productos);
-endif;
+//Primero uso la función que sobreescribe el array de productos
+$productos = devuelve_array_fecha($productos);
+//var_dump($productos);
 
 /*==========================================================================================================================================*/
 //Filtro por categoria 
@@ -30,6 +18,29 @@ $productosFiltrados = (array_filter($productos, function ($producto) use ($categ
     return in_array($categoriaId, $producto["categorias"]);
 }));
 
+$productosPagina = !empty($categoriaId) ? $productosFiltrados : $productos; //Si no hay categoría usamos todos los productos
+
+/*==========================================================================================================================================*/
+//Ordenación por nombre o por fecha
+/*UD 3.2.f
+Creo la variable $orden para capturar el valor que viene por la URL y en caso de que no venga
+le asigno null, luego uso un condicional para evaluar si el valor de la variable es "asc" o "desc" y 
+en función de eso ordeno el array $productos usando la función usort() y una función anónima que compara 
+los nombres de los productos en mayúsculas para evitar problemas de ordenación por mayúsculas y minúsculas.*/
+$orden = isset($_GET["orden"]) ? $_GET["orden"] : null; //$orden = $_GET['orden'] ?? null;
+if ($orden === "asc"):
+    $productosPagina = ordenaPorNombreAsc($productosPagina);
+elseif ($orden === 'desc'):
+    $productosPagina = ordenaPorNombreDesc($productosPagina);
+endif;
+
+$sort_date = isset($_GET['sort_date']) ? $_GET['sort_date'] : null;
+if ($sort_date == 1):
+    $productosPagina = ordenaPorFechaAsc($productosPagina);
+elseif ($sort_date == -1):
+    $productosPagina = ordenaPorFechaDesc($productosPagina);
+endif;
+
 /*==========================================================================================================================================*/
 //Paginación
 $elemPagina = 4; //Es la cantidad de elementos que queremos mostrar por página.
@@ -37,37 +48,58 @@ $elemPagina = 4; //Es la cantidad de elementos que queremos mostrar por página.
 //Obtenemos la página actual con $_GET, si no viene por la URL, asumimos que es la página 1.
 $paginaActual = isset($_GET["pagina"]) ? (int) $_GET["pagina"] : 1;
 
-$inicio = ($paginaActual - 1) * $elemPagina;
+$inicio = ($paginaActual - 1) * $elemPagina; //Calcular el índice de inicio según la página
 /*==========================================================================================================================================
 $inicio es el índice del primer elemento de nuestro array ($productos) para la página actual. Se calcula así:
-$inicio = ($paginaActual - 1) * $elemPagina;
 Se resta 1 a $paginaActual porque los índices del array empiezan en 0.
 Ejemplo:
-Página 1 → (1 - 1) * 4 = 0 → empieza desde el elemento 0 hasta el 3.
 Página 3 → (3 - 1) * 4 = 8 → empieza desde el elemento 8 hasta el 11.
 ==========================================================================================================================================*/
-if (!empty($categoriaId)) {
-    $productosPagina = array_slice($productosFiltrados, $inicio, $elemPagina);
-    /*==========================================================================================================================================
-    array_slice($productosFiltrados, $inicio, $elemPagina) crea un nuevo array llamado $productosPagina, 
-    que contiene solo los elementos de la página actual. Luego podemos recorrer $productosPagina con un foreach para mostrar los productos.
-    ==========================================================================================================================================*/
-    $totalProductos = count($productosFiltrados); //Saber el total de productos
-    $haySiguiente = $inicio + $elemPagina < count($productosFiltrados); // Verificar si hay más productos para la siguiente página
-    /*==========================================================================================================================================
-    El código sirve para calcular si hay más productos disponibles para mostrar en una página siguiente.
-    Ejemplo:
-    Si estás en página 2 ($inicio=4) y ($elemPagina=4) --> 4 + 4 = 8
-    Si count($productos) = 10 --> 8 < 10 --> sí hay siguiente página.
-    Si estás en página 3 --> 8 + 4 = 12 → 12 < 10 --> falso, no hay siguiente página.
-    ==========================================================================================================================================*/
-} else {
-    $productosPagina = array_slice($productos, $inicio, $elemPagina);
-    $totalProductos = count($productos); //Saber el total de productos
-    $haySiguiente = $inicio + $elemPagina < count($productos); // Verificar si hay más productos para la siguiente página
-}
+
+$totalProductos = count($productosPagina); //Guardar total de productos
+
+$productosPagina = array_slice($productosPagina, $inicio, $elemPagina); //Aplicar paginación
+/*==========================================================================================================================================
+array_slice($productosFiltrados, $inicio, $elemPagina) crea un nuevo array llamado $productosPagina, 
+que contiene solo los elementos de la página actual. Luego podemos recorrer $productosPagina con un foreach para mostrar los productos.
+==========================================================================================================================================*/
+
+$haySiguiente = $inicio + $elemPagina < $totalProductos; //Verificar si hay más productos para la siguiente página
+/*==========================================================================================================================================
+El código sirve para calcular si hay más productos disponibles para mostrar en una página siguiente.
+Ejemplo:
+Si estás en página 2 ($inicio=4) y ($elemPagina=4) --> 4 + 4 = 8
+Si count($productos) = 10 --> 8 < 10 --> sí hay siguiente página.
+Si estás en página 3 --> 8 + 4 = 12 → 12 < 10 --> falso, no hay siguiente página.
+==========================================================================================================================================*/
 
 $totalPaginas = ceil($totalProductos / $elemPagina); //Ceil redondea a entero la operación para saber cuántas páginas hay
+
+/*==========================================================================================================================================*/
+//Borrado de productos
+//UD 3.3.h Borrar el último elemento del array, ademas de un pequeño añadido que crea un mensaje de éxito al borrar producto
+if (isset($_GET["delete"]) && $_GET["delete"] === "true"): //Si existe delete y si ésta es igual a "true" borramos 
+    array_pop($productosPagina);
+    echo '
+        <div class="position-fixed end-0 p-3" style="z-index: 11; top: 60px;">
+        <div id="toastBorrar" class="toast align-items-center text-white bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+            <div class="toast-body">
+                Producto borrado correctamente
+            </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        </div>
+            <script>
+                //Ocultar el toast despues de 3 segundos
+                var toastEl = document.getElementById("toastBorrar");
+                setTimeout(() => { toastEl.classList.remove("show"); }, 3000);
+            </script>';
+endif;
+
+//echo var_dump($productosPagina); //Sirve para imprimir el array y comprobar que en efecto a borrado el último producto del array, 
+//ya que al no haber persistencia de datos cada vez que se accede a datos.php se reconstruye el array de productos
 
 ?>
 
@@ -87,6 +119,31 @@ $totalPaginas = ceil($totalProductos / $elemPagina); //Ceil redondea a entero la
               ?>
                 class="btn <?= ($orden == 'desc') ? 'btn-primary' : 'btn-outline-secondary'; ?>">
                 Ordenar Z-A
+            </a>
+            <?php
+            //UD 3.3.h
+            //Botón que borra el último de los elementos del array de productos usando array_pop,
+            //Más adelante pondré esta funcionalidad en la pantalla de producto, para borrar un producto seleccionado 
+            //por id y no el último. ?>
+            <a href="/?delete=true" class="btn btn-danger" <?php if (!empty($categoriaId))
+                echo 'hidden'; ?>>
+                Borrar último producto
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <?php
+        /* UD 3.5c
+        Botones que me sirven para ordenaro por fecha asc o desc.
+        */ ?>
+        <div class="col-12 d-flex justify-content-center my-3 gap-2">
+            <a href="/?categoria=<?= $categoriaId ?>&sort_date=1"
+                class="btn <?= ($sort_date == 1) ? 'btn-primary' : 'btn-outline-primary'; ?>">
+                Fecha ↑
+            </a>
+            <a href="/?categoria=<?= $categoriaId ?>&sort_date=-1"
+                class="btn <?= ($sort_date == -1) ? 'btn-primary' : 'btn-outline-secondary'; ?>">
+                Fecha ↓
             </a>
         </div>
     </div>
@@ -118,25 +175,25 @@ $totalPaginas = ceil($totalProductos / $elemPagina); //Ceil redondea a entero la
                             <p class="card-text"><?= $producto['nombre']; ?></p>
                             <p class="card-text"><?= $producto['descripcion']; ?></p>
                             <?php
-                            /*UD 3.3.c
+                            /*UD 3.3.c y UD 3.4.a
                             Dentro del bucle en el que imprimo los productos, hago un segundo bucle
                             para recorrer el array de IDs de categorías de cada producto.
                             Por cada ID, compruebo si existe en el array $categorias usando array_key_exists.
                             Si existe, añado el nombre de la categoría al array $nombresCategorias.
                             Al final, con implode() uno todas las categorías separadas por comas
                             y las muestro dentro de la etiqueta <p> .*/
-                            ?>
-                            <p class="card-text">
-                                <?php
-                                $nombresCategorias = [];
-                                foreach ($producto['categorias'] as $categoriaClave) {
-                                    if (array_key_exists($categoriaClave, $categorias)) {
-                                        $nombresCategorias[] = $categorias[$categoriaClave];
-                                    }
+
+                            //Mostrar categorías
+                            $nombresCategorias = [];
+                            foreach ($producto['categorias'] as $categoriaClave) {
+                                if (array_key_exists($categoriaClave, $categorias)) {
+                                    $nombresCategorias[] = $categorias[$categoriaClave];
                                 }
-                                echo implode(", ", $nombresCategorias);
-                                ?>
-                            </p>
+                            }
+                            ?>
+                            <p class="card-text"><?= implode(", ", $nombresCategorias) ?></p>
+                            <!-- Uso la funcion date para imprimir corectamente el timestamp que me da la funcion -->
+                            <p class="card-text"><strong>Fecha:</strong> <?= date('d/m/Y', $producto['fecha']) ?></p>
                         </div>
                     </div>
                 </a>
@@ -148,16 +205,15 @@ $totalPaginas = ceil($totalProductos / $elemPagina); //Ceil redondea a entero la
         <div class="col text-start">
             <?php
             /*==========================================================================================================================================
-            Botón “Anterior”: solo se muestra si $paginaActual > 1. Si estamos en la primera página, muestra un botón de “Volver” que lleva a inicio.
-            IMPORTANTE: al generar el enlace usamos también &orden=$orden. 
-            Esto garantiza que, aunque cambiemos de página, se mantenga el criterio de orden actual (asc o desc) 
-            y no se pierda al navegar entre páginas.
+            Botón “Anterior”: solo se muestra si $paginaActual > 1. Si estamos en la primera página el botón se oculta.
+            Al generar el enlace pasamos todos los parametros para que aunque cambiemos de página, se mantenga el 
+            criterio de orden actual (asc o desc), (fecha asc desc) categoria, y página y no se pierda al navegar entre páginas.
             ==========================================================================================================================================*/
             ?>
             <?php if ($paginaActual > 1): ?>
-                <a href="?pagina=<?= $paginaActual - 1 ?>&orden=<?= $orden ?>&categoria=<?= $categoriaId ?>"
+                <a href="?pagina=<?= $paginaActual - 1 ?>&orden=<?= $orden ?>&categoria=<?= $categoriaId ?>&sort_date=<?= $sort_date ?>"
                     class="btn btn-secondary">← Anterior</a> <?php else: ?>
-                <button class="btn btn-secondary" disabled>No hay más</button>
+                <button class="btn btn-secondary" hidden>No hay más</button>
             <?php endif; ?>
         </div>
 
@@ -169,16 +225,15 @@ $totalPaginas = ceil($totalProductos / $elemPagina); //Ceil redondea a entero la
         <div class="col text-end">
             <?php
             /*==========================================================================================================================================
-            Botón “Siguiente”: solo se muestra si $haySiguiente es true. Si no hay más elementos, el botón aparece deshabilitado.
-            IMPORTANTE: al generar el enlace usamos también &orden=$orden. 
-            Esto garantiza que, aunque cambiemos de página, se mantenga el criterio de orden actual (asc o desc) 
-            y no se pierda al navegar entre páginas.
+            Botón “Siguiente”: solo se muestra si $haySiguiente es true. Si no hay más elementos, el botón se oculta
+            Al generar el enlace pasamos todos los parametros para que aunque cambiemos de página, se mantenga el 
+            criterio de orden actual (asc o desc), (fecha asc desc) categoria, y página y no se pierda al navegar entre páginas.
             ==========================================================================================================================================*/
             ?>
             <?php if ($haySiguiente): ?>
-                <a href="?pagina=<?= $paginaActual + 1 ?>&orden=<?= $orden ?>&categoria=<?= $categoriaId ?>"
+                <a href="?pagina=<?= $paginaActual + 1 ?>&orden=<?= $orden ?>&categoria=<?= $categoriaId ?>&sort_date=<?= $sort_date ?>"
                     class="btn btn-secondary">Siguiente →</a> <?php else: ?>
-                <button class="btn btn-secondary" disabled>No hay más</button>
+                <button class="btn btn-secondary" hidden>No hay más</button>
             <?php endif; ?>
         </div>
     </div>

@@ -1,5 +1,6 @@
 <!--DOCTYPE html -->
-<?php include 'datos.php'; ?>
+<?php include_once("datos.php"); ?>
+<?php include_once("utiles.php"); ?>
 <html>
 
 <head>
@@ -32,7 +33,7 @@
             <svg class="bi me-2" width="40" height="32">
                 <use xlink:href="#bootstrap"></use>
             </svg>
-            <span class="fs-4">Portfolio</span>
+            <span class="fs-4">Portfolio <?= devuelve_anyo() ?></span>
         </a>
 
         <ul class="nav nav-pills">
@@ -60,7 +61,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <?php
-                    /*UD 3.3.e
+                    /*UD 3.3.e y UD 3.4.b
                     Completar la opción de categorias recorriendo el array de categorias y crea un dropdown con las 
                     categorias.
                     */

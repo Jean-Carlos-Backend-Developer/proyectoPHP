@@ -1,6 +1,6 @@
-<?php include("templates/header.php"); ?>
-<?php include("datos.php"); ?>
-<?php include("utiles.php"); ?>
+<?php include_once("templates/header.php"); ?>
+<?php include_once("datos.php"); ?>
+<?php include_once("utiles.php"); ?>
 
 <?php $nameErr = ""; 
 $nameErr = valida_texto();

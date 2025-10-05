@@ -22,8 +22,7 @@ $productos = [
         "descripcion" => "Portátil de alto rendimiento con chip M2",
         "imagen" => "static/images/macbookpro.jpeg",
         "precio" => 399.99,
-        //Añadiendo fecha que pedia en el ejercicio UD 3.3b
-        "fecha" => "15/11/2023",
+        "fecha" => "15/11/2021",
         "categorias" => [1, 5]
     ],
     [
@@ -41,7 +40,7 @@ $productos = [
         "descripcion" => "Teléfono móvil de nueva generación",
         "imagen" => "static/images/iphone14pro.jpg",
         "precio" => 650.35,
-        "fecha" => "20/09/2023",
+        "fecha" => "20/09/2022",
         "categorias" => [2]
     ],
     [
@@ -50,7 +49,7 @@ $productos = [
         "descripcion" => "Smartphone Android de gama alta",
         "imagen" => "static/images/galaxys29.jpg",
         "precio" => 1480.99,
-        "fecha" => "30/08/2023",
+        "fecha" => "30/08/2020",
         "categorias" => [2]
     ],
     [
@@ -59,7 +58,7 @@ $productos = [
         "descripcion" => "Consola de videojuegos de última generación",
         "imagen" => "static/images/ps5.jpg",
         "precio" => 650.49,
-        "fecha" => "25/07/2023",
+        "fecha" => "25/07/2024",
         "categorias" => [3]
     ],
     [
@@ -68,7 +67,7 @@ $productos = [
         "descripcion" => "Consola potente con soporte para juegos en 4K",
         "imagen" => "static/images/xboxseriesx.jpg",
         "precio" => 399.99,
-        "fecha" => "15/06/2023",
+        "fecha" => "15/06/2019",
         "categorias" => [3]
     ],
     [
@@ -77,7 +76,7 @@ $productos = [
         "descripcion" => "Auriculares inalámbricos con cancelación de ruido",
         "imagen" => "static/images/Airpods.jpg",
         "precio" => 225.32,
-        "fecha" => "05/05/2023",
+        "fecha" => "05/05/2025",
         "categorias" => [4]
     ],
     [
@@ -91,7 +90,8 @@ $productos = [
     ]
 ];
 
-//UD 3.3.f 
+
+//UD 3.3.g
 //El código recorre el array de productos y divide los 8 productos en 2 arrays, luego cada uno de esos arrays se codifican para crear
 //dos ficheros jSON usando la funcion json_encode a la que le pasamos el array y JSON_PRETTY_PRINT para que los cree de forma "legible".
 //Después leemos ambos ficheros y lo unimos usado array_merge para crear u solo array.
@@ -130,7 +130,7 @@ $miArray1 = json_decode(file_get_contents($fichero1),true);
 $miArray2 = json_decode(file_get_contents($fichero2),true);
 $miArrayFinal = array_merge($miArray1, $miArray2);
 
-//echo var_dump($miArrayFinal); //Linea que me sirve para ver que hay e el array
+//echo var_dump($miArrayFinal); //Linea que me sirve para ver que hay en el array
 
 ?>
 

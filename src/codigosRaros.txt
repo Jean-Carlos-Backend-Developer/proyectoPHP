@@ -1,0 +1,14 @@
+codigo raro1 
+
+    id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false"
+    <?php $orden = $_GET["orden"]; ?>
+    <?php if($orden == "cate") : ?>
+        class="nav-link dropdown-toggle active" 
+    <?php else : ?>
+    class="nav-link dropdown-toggle"
+    <?php endif ?>
+    >
+    CATEGORÍAS
+    <span class="caret"></span>
+
+codigo raro 2

@@ -1,0 +1,48 @@
+[
+    {
+        "id": 1,
+        "nombre": "MacBook Pro",
+        "descripcion": "Port\u00e1til de alto rendimiento con chip M2",
+        "imagen": "static\/images\/macbookpro.jpeg",
+        "precio": 399.99,
+        "fecha": "15\/11\/2023",
+        "categorias": [
+            1,
+            5
+        ]
+    },
+    {
+        "id": 6,
+        "nombre": "Asus ROG Ally",
+        "descripcion": "PC h\u00edbrido con gr\u00e1fica dedicada NVIDIA",
+        "imagen": "static\/images\/rog-ally.webp",
+        "precio": 120.22,
+        "fecha": "10\/10\/2023",
+        "categorias": [
+            1,
+            3
+        ]
+    },
+    {
+        "id": 4,
+        "nombre": "iPhone 14 Pro",
+        "descripcion": "Tel\u00e9fono m\u00f3vil de nueva generaci\u00f3n",
+        "imagen": "static\/images\/iphone14pro.jpg",
+        "precio": 650.35,
+        "fecha": "20\/09\/2023",
+        "categorias": [
+            2
+        ]
+    },
+    {
+        "id": 8,
+        "nombre": "Samsung Galaxy S23",
+        "descripcion": "Smartphone Android de gama alta",
+        "imagen": "static\/images\/galaxys29.jpg",
+        "precio": 1480.99,
+        "fecha": "30\/08\/2023",
+        "categorias": [
+            2
+        ]
+    }
+]

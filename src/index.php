@@ -125,7 +125,7 @@ endif;
             //Botón que borra el último de los elementos del array de productos usando array_pop,
             //Más adelante pondré esta funcionalidad en la pantalla de producto, para borrar un producto seleccionado 
             //por id y no el último. ?>
-            <a href="/?delete=true" class="btn btn-danger" <?php if (!empty($categoriaId))
+            <a href="/?delete=true&pagina=<?= $paginaActual ?>&orden=<?= $orden ?>&sort_date=<?= $sort_date ?>" class="btn btn-danger" <?php if (!empty($categoriaId))
                 echo 'hidden'; ?>>
                 Borrar último producto
             </a>

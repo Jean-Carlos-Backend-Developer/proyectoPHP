@@ -11,7 +11,6 @@ $idProducto = isset($_GET['id']) ? $_GET['id'] : null; //Compruebo que me llega 
 <div class="container mb-5">
     <div class="row justify-content-center">
         <!-- //Buscar el producto que coincide con el id -->
-        <?php var_dump($productos) ?>
         <?php foreach ($productos as $producto): ?>
             <?php if ($producto['id'] == $idProducto): ?>
                 <div class="card" style="width: 18rem;">

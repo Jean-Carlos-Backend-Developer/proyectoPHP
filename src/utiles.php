@@ -1,4 +1,5 @@
 <?php
+
 function ordenaPorNombreAsc($productos)
 {
     usort($productos, function ($a, $b) {
@@ -25,19 +26,75 @@ function test_input($data)
     return $data;
 }
 
-function valida_texto()
+function validar_email()
 {
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["nombreApellidos"])) {
-            $nameErr = "Por favor, introduzca nombre y apellidos";
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+        if (empty($_POST["email"])) {
+            $err = "Porfavor, introduzca un email";
         } else {
-            $name = test_input($_POST["nombreApellidos"]);
-            if (test_input($name)) {
-                $nameErr = "Solo se permiten letras y espacios.";
+            $email = test_input($_POST["email"]); //Limpiamos el email
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { //Validamos el email
+                $err = "Formato del email no válido";
+            } else {
+                $err = "";
             }
         }
     }
-    return $nameErr;
+    return $err;
+}
+
+function validar_telefono()
+{
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+        if (empty($_POST["telefono"])) {
+            $err = "Porfavor, introduzca un teléfono";
+        } else {
+            $telefono = test_input($_POST["telefono"]); //Limpiamos el teléfono
+            if (!preg_match("/\^[9|6]{1}([\d]{2}[-]*){3}[\d]{2}\$/", $telefono)) { //Validamos el email
+                $err = "Formato del teléfono no válido";
+            } else {
+                $err = "";
+            }
+        }
+    }
+    return $err;
+}
+
+function validar_texto()
+{
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["nombreApellidos"])) {
+            $err = "Por favor, introduzca nombre y apellidos";
+        } else {
+            $name = test_input($_POST["nombreApellidos"]); //Limpiamos el texto
+            if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+                $err = "Solo se permiten letras y espacios.";
+            } else {
+                $err = "";
+            }
+        }
+    }
+    return $err;
+}
+
+function validar_contrasenya()
+{
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["contrasenya"])) {
+            $err = "Por favor, introduzca una contraseña";
+        } else {
+            if (strlen($_POST["contrasenya"]) < 6) {
+                $err = "La contraseña debe tener al menos 6 caracteres.";
+            } else {
+                $err = "";
+            }
+        }
+    }
+    return $err;
 }
 
 /* UD 3.5a 
@@ -54,8 +111,9 @@ Creación de función que tomará el array de proyectos y los sobreescribirá co
 de tipo fecha y no un String 
 */
 
-function devuelve_array_fecha($productos) {
-    $productosConvertidos =  [];
+function devuelve_array_fecha($productos)
+{
+    $productosConvertidos = [];
     foreach ($productos as $producto) {
         //Pimero creamos un array que contiene cada parte de la fecha separada por '/'
         $fechaPartes = explode('/', $producto['fecha']);

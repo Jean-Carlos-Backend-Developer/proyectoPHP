@@ -104,5 +104,10 @@
                     </a>
                 </li>
             <?php endif; ?>
+            <li class="nav-item">
+                <a href="login.php" <?php if ($_SERVER['SCRIPT_NAME'] == "/login.php"): ?> class="nav-link active"
+                    <?php else: ?> class="nav-link" <?php endif ?>>LOGIN
+                </a>
+            </li>
         </ul>
     </header>

@@ -1,23 +1,25 @@
-<?php include_once("templates/header.php"); ?>
-<?php include_once("datos.php"); ?>
-<?php include_once("utiles.php"); ?>
+<?php include("templates/header.php"); ?>
+<?php include("datos.php"); ?>
 
-<?php $nameErr = ""; 
-$nameErr = valida_texto();
-
-?>
 <div class="container">
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-
-        <div class="mb-3 col-sm-6 p-0">
-            <label for="nombreApellidosID" class="form-label">Nombre y apellidos</label>
-            <input type="text" name="nombreApellidos" class="form-control" id="nombreApellidosID"
-                placeholder="Su nombre y apellidos">
-            <span class="text-danger"> <?php echo $nameErr ?> </span>
+    <h2 class="mb-5">Sobre mí</h2>
+    <div class="row">
+        <div class="col-md">
+            <img src="static/images/businessman.jpg" class="img-fluid rounded">
         </div>
-        
-        <button type="submit" class="btn btn-success">Enviar</button>
-    </form>
+        <div class="col-md">
+            <?php
+            /*UD 3.2.c
+            Aqui es donde pongo el include para poder usar la variable que está en la pagina de datos.php
+            y la uso en el h3 usando echo*/
+            ?>
+            <h3><?php echo $nombre['name'] . " " . $nombre['surname']?></h3>
+            <p>Ciclo Superior DAW.</p>
+            <p>Apasionado del mundo de la programación en general, y de las tecnologías web en particular.</p>
+            <p>Si tienes cualquier tipo de pregunta, contacta conmigo por favor.</p>
+            <p>Teléfono: 87654321</p>
+        </div>
+    </div>
 </div>
 
 <?php include("templates/footer.php"); ?>

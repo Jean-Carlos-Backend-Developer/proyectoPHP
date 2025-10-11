@@ -13,124 +13,125 @@ $categorias = [
 
 /*UD 3.3.a
 Construcción del array asociativo con productos de los mas real posible con imagen distita para cada uno 
-para luego poder usarlo en la página productos.php*/
+para luego poder usarlo en la página productos.php
+ESTÁ TODO COMENTADO PORQUE HAGO USO DE DOS JSON, QUE LUEGO CONVERTÍ A ARRAY MAS ABAJO DE OTRO EJERCICIO*/
 
-$productos = [
-    [
-        "id" => 1,
-        "nombre" => "MacBook Pro",
-        "descripcion" => "Portátil de alto rendimiento con chip M2",
-        "imagen" => "static/images/macbookpro.jpeg",
-        "precio" => 399.99,
-        "fecha" => "15/11/2021",
-        "categorias" => [1, 5]
-    ],
-    [
-        "id" => 6,
-        "nombre" => "Asus ROG Ally",
-        "descripcion" => "PC híbrido con gráfica dedicada NVIDIA",
-        "imagen" => "static/images/rog-ally.webp",
-        "precio" => 120.22,
-        "fecha" => "10/10/2023",
-        "categorias" => [1, 3]
-    ],
-    [
-        "id" => 4,
-        "nombre" => "iPhone 14 Pro",
-        "descripcion" => "Teléfono móvil de nueva generación",
-        "imagen" => "static/images/iphone14pro.jpg",
-        "precio" => 650.35,
-        "fecha" => "20/09/2022",
-        "categorias" => [2]
-    ],
-    [
-        "id" => 8,
-        "nombre" => "Samsung Galaxy S23",
-        "descripcion" => "Smartphone Android de gama alta",
-        "imagen" => "static/images/galaxys29.jpg",
-        "precio" => 1480.99,
-        "fecha" => "30/08/2020",
-        "categorias" => [2]
-    ],
-    [
-        "id" => 7,
-        "nombre" => "PlayStation 5",
-        "descripcion" => "Consola de videojuegos de última generación",
-        "imagen" => "static/images/ps5.jpg",
-        "precio" => 650.49,
-        "fecha" => "25/07/2024",
-        "categorias" => [3]
-    ],
-    [
-        "id" => 3,
-        "nombre" => "Xbox Series X",
-        "descripcion" => "Consola potente con soporte para juegos en 4K",
-        "imagen" => "static/images/xboxseriesx.jpg",
-        "precio" => 399.99,
-        "fecha" => "15/06/2019",
-        "categorias" => [3]
-    ],
-    [
-        "id" => 5,
-        "nombre" => "AirPods Pro",
-        "descripcion" => "Auriculares inalámbricos con cancelación de ruido",
-        "imagen" => "static/images/Airpods.jpg",
-        "precio" => 225.32,
-        "fecha" => "05/05/2025",
-        "categorias" => [4]
-    ],
-    [
-        "id" => 2,
-        "nombre" => "Logitech MX Master 3",
-        "descripcion" => "Ratón inalámbrico ergonómico y preciso",
-        "imagen" => "static/images/logitech.jpg",
-        "precio" => 89.99,
-        "fecha" => "01/04/2023",
-        "categorias" => [4]
-    ]
-];
+// $productos = [
+//     [
+//         "id" => 1,
+//         "nombre" => "MacBook Pro",
+//         "descripcion" => "Portátil de alto rendimiento con chip M2",
+//         "imagen" => "static/images/macbookpro.jpeg",
+//         "precio" => 399.99,
+//         "fecha" => "15/11/2021",
+//         "categorias" => [1, 5]
+//     ],
+//     [
+//         "id" => 6,
+//         "nombre" => "Asus ROG Ally",
+//         "descripcion" => "PC híbrido con gráfica dedicada NVIDIA",
+//         "imagen" => "static/images/rog-ally.webp",
+//         "precio" => 120.22,
+//         "fecha" => "10/10/2023",
+//         "categorias" => [1, 3]
+//     ],
+//     [
+//         "id" => 4,
+//         "nombre" => "iPhone 14 Pro",
+//         "descripcion" => "Teléfono móvil de nueva generación",
+//         "imagen" => "static/images/iphone14pro.jpg",
+//         "precio" => 650.35,
+//         "fecha" => "20/09/2022",
+//         "categorias" => [2]
+//     ],
+//     [
+//         "id" => 8,
+//         "nombre" => "Samsung Galaxy S23",
+//         "descripcion" => "Smartphone Android de gama alta",
+//         "imagen" => "static/images/galaxys29.jpg",
+//         "precio" => 1480.99,
+//         "fecha" => "30/08/2020",
+//         "categorias" => [2]
+//     ],
+//     [
+//         "id" => 7,
+//         "nombre" => "PlayStation 5",
+//         "descripcion" => "Consola de videojuegos de última generación",
+//         "imagen" => "static/images/ps5.jpg",
+//         "precio" => 650.49,
+//         "fecha" => "25/07/2024",
+//         "categorias" => [3]
+//     ],
+//     [
+//         "id" => 3,
+//         "nombre" => "Xbox Series X",
+//         "descripcion" => "Consola potente con soporte para juegos en 4K",
+//         "imagen" => "static/images/xboxseriesx.jpg",
+//         "precio" => 399.99,
+//         "fecha" => "15/06/2019",
+//         "categorias" => [3]
+//     ],
+//     [
+//         "id" => 5,
+//         "nombre" => "AirPods Pro",
+//         "descripcion" => "Auriculares inalámbricos con cancelación de ruido",
+//         "imagen" => "static/images/Airpods.jpg",
+//         "precio" => 225.32,
+//         "fecha" => "05/05/2025",
+//         "categorias" => [4]
+//     ],
+//     [
+//         "id" => 2,
+//         "nombre" => "Logitech MX Master 3",
+//         "descripcion" => "Ratón inalámbrico ergonómico y preciso",
+//         "imagen" => "static/images/logitech.jpg",
+//         "precio" => 89.99,
+//         "fecha" => "01/04/2023",
+//         "categorias" => [4]
+//     ]
+// ];
 
 
 //UD 3.3.g
-//El código recorre el array de productos y divide los 8 productos en 2 arrays, luego cada uno de esos arrays se codifican para crear
-//dos ficheros jSON usando la funcion json_encode a la que le pasamos el array y JSON_PRETTY_PRINT para que los cree de forma "legible".
-//Después leemos ambos ficheros y lo unimos usado array_merge para crear u solo array.
+//Inicialmente, el array $productos estaba sin comentar para poder generar los ficheros JSON 
+//(productos1.json y productos2.json) con los datos de los productos. 
+//Una vez creados los JSON, se comenta el array para cumplir con el ejercicio, 
+//Comprobamos si existen los ficheros JSON con productos. 
+//Si no existen, dividimos el array $productos en dos partes, las codificamos a JSON 
+//y las guardamos en productos1.json y productos2.json.
+//Luego, leemos ambos ficheros, los decodificamos y los unimos con array_merge 
+//para reconstruir el array completo de productos.
 
 $fichero1 = "productos1.json";
 $fichero2 = "productos2.json";
-$productos1 = [];
-$productos2 = [];
 
-foreach ($productos as $indice => $producto) {
-    if ($indice <= 3) {
-        $productos1[] = $producto;
-    } else {
-        $productos2[] = $producto;
+if (!file_exists($fichero1) || !file_exists($fichero2)) {
+
+    $productos1 = [];
+    $productos2 = [];
+
+    foreach ($productos as $indice => $producto) {
+        if ($indice <= 3) {
+            $productos1[] = $producto;
+        } else {
+            $productos2[] = $producto;
+        }
     }
+
+    //Codificación a JSON
+    $miJson1 = json_encode($productos1, JSON_PRETTY_PRINT);
+    $miJson2 = json_encode($productos2, JSON_PRETTY_PRINT);
+
+    //Escritura de los ficheros JSON
+    file_put_contents($fichero1, $miJson1);
+    file_put_contents($fichero2, $miJson2);
+
 }
 
-//Codificación de los arrays a JSON
-$miJson1 = json_encode($productos1, JSON_PRETTY_PRINT);
-$miJson2 = json_encode($productos2, JSON_PRETTY_PRINT);
-
-//Si el fichero no existe lo crea y escribe en el contenido del JSON
-if (!file_exists($fichero1)) {
-    if (file_put_contents($fichero1, $miJson1) !== false) {
-    } 
-}
-
-if (!file_exists($fichero2)) {
-    if (file_put_contents($fichero2, $miJson2) !== false) {
-    }
-}
-
-//Leemos ambos fichero JSON creado anteriormente y los decodifica creando un array por cada fichero,
-//para después con array_merge crear un solo array que une ambos arrays.
-$miArray1 = json_decode(file_get_contents($fichero1),true);
-$miArray2 = json_decode(file_get_contents($fichero2),true);
-$miArrayFinal = array_merge($miArray1, $miArray2);
-
-//echo var_dump($miArrayFinal); //Linea que me sirve para ver que hay en el array
+//Lectura y unión de ambos ficheros JSON
+$productos1 = json_decode(file_get_contents($fichero1), true);
+$productos2 = json_decode(file_get_contents($fichero2), true);
+$productos = array_merge($productos1, $productos2);
 
 ?>
 

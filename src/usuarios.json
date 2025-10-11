@@ -1,0 +1,22 @@
+[
+    {
+        "usuario": "juan.perez@example.com",
+        "contrasena": "abc123"
+    },
+    {
+        "usuario": "maria.garcia@example.com",
+        "contrasena": "pass4567"
+    },
+    {
+        "usuario": "carlos.espin@example.com",
+        "contrasena": "clave890"
+    },
+    {
+        "usuario": "ana.lopez@example.com",
+        "contrasena": "miPass99"
+    },
+    {
+        "usuario": "espinjcmorales@gmail.com",
+        "contrasena": "123456"
+    }
+]

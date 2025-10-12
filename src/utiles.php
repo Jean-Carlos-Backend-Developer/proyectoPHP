@@ -26,6 +26,7 @@ function test_input($data)
     return $data;
 }
 
+//Función para validar email que luego uso en el ejercicio UD 4.1.a
 function validar_email()
 {
     $err = "";
@@ -52,7 +53,7 @@ function validar_telefono()
             $err = "Porfavor, introduzca un teléfono";
         } else {
             $telefono = test_input($_POST["telefono"]); //Limpiamos el teléfono
-            if (!preg_match("/\^[9|6]{1}([\d]{2}[-]*){3}[\d]{2}\$/", $telefono)) { //Validamos el email
+            if (!preg_match("/^[98]\d{8}$/", $telefono)) { //Validamos el teléfono
                 $err = "Formato del teléfono no válido";
             } else {
                 $err = "";
@@ -70,7 +71,7 @@ function validar_texto()
             $err = "Por favor, introduzca nombre y apellidos";
         } else {
             $name = test_input($_POST["nombreApellidos"]); //Limpiamos el texto
-            if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+            if (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ' -]*$/u",$name)) {
                 $err = "Solo se permiten letras y espacios.";
             } else {
                 $err = "";
@@ -80,6 +81,7 @@ function validar_texto()
     return $err;
 }
 
+//Función para validar contraseña que luego uso en el ejercicio UD 4.1.a
 function validar_contrasenya()
 {
     $err = "";
@@ -92,6 +94,17 @@ function validar_contrasenya()
             } else {
                 $err = "";
             }
+        }
+    }
+    return $err;
+}
+
+function validar_tipo() 
+{
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["tipo"])) {
+            $err = "Por favor, introduzca el tipo de consulta";
         }
     }
     return $err;

@@ -1,22 +1,22 @@
 [
     {
-        "usuario": "juan.perez@example.com",
-        "contrasena": "abc123"
+        "email": "juan.perez@example.com",
+        "pass": "abc123"
     },
     {
-        "usuario": "maria.garcia@example.com",
-        "contrasena": "pass4567"
+        "email": "maria.garcia@example.com",
+        "pass": "pass4567"
     },
     {
-        "usuario": "carlos.espin@example.com",
-        "contrasena": "clave890"
+        "email": "carlos.espin@example.com",
+        "pass": "clave890"
     },
     {
-        "usuario": "ana.lopez@example.com",
-        "contrasena": "miPass99"
+        "email": "ana.lopez@example.com",
+        "pass": "miPass99"
     },
     {
-        "usuario": "espinjcmorales@gmail.com",
-        "contrasena": "123456"
+        "email": "espinjcmorales@gmail.com",
+        "pass": "123456"
     }
 ]

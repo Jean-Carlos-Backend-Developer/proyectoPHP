@@ -1,0 +1,8 @@
+# Imagen base: Ubuntu 24.04 (Noble Numbat)
+FROM php:7.4-apache
+# Copiar tu página personalizada
+COPY src/ /var/www/html/
+# Exponer el puerto 80
+EXPOSE 80
+# Comando por defecto: ejecutar Apache en primer plano
+CMD ["apache2ctl", "-D", "FOREGROUND"]

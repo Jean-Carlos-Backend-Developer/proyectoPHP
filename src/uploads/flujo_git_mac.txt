@@ -1,0 +1,62 @@
+FLUJO DE TRABAJO ENTRE MACBOOK (CASA) Y IMAC (TRABAJO)
+=====================================================
+
+Objetivo: mantener tu proyecto siempre sincronizado entre ambos equipos usando Git y GitHub.
+
+-----------------------------------------------------
+COMANDOS BÁSICOS DE GIT
+-----------------------------------------------------
+
+git status         -> Muestra el estado del repositorio.
+git add .          -> Añade todos los archivos modificados al área de preparación.
+git commit -m "msg" -> Guarda los cambios localmente con un mensaje.
+git push           -> Sube tus commits locales a GitHub.
+git pull           -> Descarga los últimos cambios desde GitHub.
+git log --oneline  -> Muestra un historial breve de commits.
+git branch         -> Muestra la rama actual.
+git checkout -b nombre-rama -> Crea una nueva rama (opcional).
+git merge nombre-rama       -> Fusiona otra rama con la actual (opcional).
+
+-----------------------------------------------------
+FLUJO DIARIO DE TRABAJO
+-----------------------------------------------------
+
+🏠 EN TU MACBOOK (CASA)
+1. Abre VS Code y el proyecto.
+2. Antes de empezar:
+   git pull        # Descarga los cambios más recientes
+3. Trabaja normalmente.
+4. Al terminar:
+   git add .
+   git commit -m "Descripción de los cambios"
+   git push        # Sube tus cambios a GitHub
+
+💼 EN TU IMAC (TRABAJO)
+1. Abre VS Code y el proyecto.
+2. Antes de empezar:
+   git pull        # Descarga los cambios hechos en casa
+3. Trabaja normalmente.
+4. Al terminar:
+   git add .
+   git commit -m "Cambios realizados en el trabajo"
+   git push        # Sube los cambios a GitHub
+
+-----------------------------------------------------
+CONSEJOS IMPORTANTES
+-----------------------------------------------------
+
+- Siempre ejecuta "git pull" antes de empezar a trabajar.
+- Usa mensajes de commit claros y descriptivos.
+- Si hay conflictos, VS Code te ayudará a resolverlos.
+- Asegúrate de estar autenticado en GitHub desde VS Code.
+- No trabajes al mismo tiempo en ambos equipos sin hacer push/pull entre sesiones.
+
+-----------------------------------------------------
+RESUMEN RÁPIDO
+-----------------------------------------------------
+
+Descargar cambios     -> git pull
+Ver qué cambió         -> git status
+Preparar cambios       -> git add .
+Guardar cambios local  -> git commit -m "mensaje"
+Subir cambios a GitHub -> git push

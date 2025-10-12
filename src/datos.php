@@ -1,5 +1,4 @@
 <?php
-
 /*UD 3.3.b
 Creación de un array asociativo llamado $categorias, en el cual las claves numéricas represetan
 el identificador único de cada categoría y luego lo añado como campo nuevo en el array de productos*/
@@ -133,9 +132,6 @@ $productos1 = json_decode(file_get_contents($fichero1), true);
 $productos2 = json_decode(file_get_contents($fichero2), true);
 $productos = array_merge($productos1, $productos2);
 
-?>
-
-<?php
 /*UD 3.2.c
 Creación de la variable donde se almacene el nombre y el apellido para luego usarlo
 en el h3 de la página contacto*/
@@ -143,13 +139,12 @@ $nombre = [
     "name" => "Jean Carlos",
     "surname" => "Espín"
 ];
-?>
 
-<?php
 /*UD 3.2.e
 Creación de una variable boleana para que en caso que sea verdadera muestre una nueva 
 opción llamada "Administración" en el menú de navegación luego en el archivo header.php
-se hace el include de datos.php y se usa la variable $loggedIn en un condicional para mostrar 
+se hace el include de datos.php y se usa la variable $loggedIn en un condicional para mostrar o
 no la nueva opción en el menú de navegación.*/
-$loggedIn = true;
+//$loggedIn = true;
+
 ?>

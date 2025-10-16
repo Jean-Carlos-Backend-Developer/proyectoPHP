@@ -45,21 +45,8 @@ $idProducto = isset($_GET['id']) ? $_GET['id'] : null; //Compruebo que me llega 
 
 <div class="container mb-5">
     <div class="row">
-        <!-- Botón borrar producto PROXIMAMENTE OPERATIVO -->
         <div class="col text-center">
-            <?php
-            /*==========================================================================================================================================
-            Botón “Siguiente”: solo se muestra si $haySiguiente es true. Si no hay más elementos, el botón aparece deshabilitado.
-            IMPORTANTE: al generar el enlace usamos también &orden=$orden. 
-            Esto garantiza que, aunque cambiemos de página, se mantenga el criterio de orden actual (asc o desc) 
-            y no se pierda al navegar entre páginas.
-            ==========================================================================================================================================*/
-            ?>
-            <?php if ($haySiguiente): ?>
-                <a href="?pagina=<?= $paginaActual + 1 ?>&orden=<?= $orden ?>&categoria=<?= $categoriaId ?>"
-                    class="btn btn-secondary">Siguiente →</a> <?php else: ?>
-                <button class="btn btn-secondary" disabled>No hay más</button>
-            <?php endif; ?>
+            <a href="/" class="btn btn-primary">Volver</a>
         </div>
     </div>
 </div>

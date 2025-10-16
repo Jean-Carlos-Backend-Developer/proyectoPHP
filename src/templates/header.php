@@ -1,20 +1,24 @@
 <?php
-$categoriaId = isset($_GET["categoria"]) ? (int) $_GET["categoria"] : null;
+$categoriaId = isset($_GET["categoria"]) ? $_GET["categoria"] : null; //Coger categoria de la URL
+
+
+$usuario = isset($_COOKIE["user_email"]) ? $_COOKIE["user_email"] : ""; //Recoger usuario de la cookie
+
 
 /*
 UD 4.1.f
 //Recojo la variable que mandé antes por la URL y si es true borro la cookie, poniendo ésta 
 a un valor negativo, esto hace que se oculte el menú de ADMINISTRACION y se muestre la opción
 de LOGIN otra vez.
-*/  
+*/
 $logout = isset($_GET["logout"]) ? $_GET["logout"] : null;
 if ($logout == true) {
-    setcookie("user_email","", time() -3600);
+    setcookie("user_email", "", time() - 3600);
     header("Location: /");
     exit;
 }
 ?>
-<?php include_once("datos.php"); ?> 
+<?php include_once("datos.php"); ?>
 <?php include_once("utiles.php"); ?>
 <html>
 
@@ -57,7 +61,7 @@ if ($logout == true) {
                 */
                 ?>
                 <a href="/" <?php if ($_SERVER['SCRIPT_NAME'] == "/index.php" and empty($categoriaId)): ?>
-                        class="nav-link active" <?php else: ?> class="nav-link" <?php endif ?>>INICIO
+                    class="nav-link active" <?php else: ?> class="nav-link" <?php endif ?>>INICIO
                 </a>
             </li>
             <li class="nav-item">
@@ -66,7 +70,7 @@ if ($logout == true) {
                 Para hacer que cuando estemos filtrando por categorias se active el boton de categorias primero miro si se le pasa
                 la categoría y si es así , si la categoría es > 0 cambiamos la clase a active.*/
                 ?>
-                <a href="/" class="nav-link dropdown-toggle <?= ($categoriaId > 0) ? 'active' : '' ?> "
+                <a href="/" class="nav-link dropdown-toggle <?= ($categoriaId) ? 'active' : '' ?> "
                     id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
                     CATEGORÍAS
                     <span class="caret"></span>
@@ -112,47 +116,45 @@ if ($logout == true) {
             <?php
             /*UD 4.1.e
             Compruebo que la cookie existe y si es asi muestro el menú de Administración.
-            */  
+            */
             ?>
-            <?php if(isset($_COOKIE["user_email"])): ?> 
+            <?php if ($usuario): ?>
                 <li class="nav-item">
-                    <a href="contacto_lista.php" <?php if ($_SERVER['SCRIPT_NAME'] == "/contacto_lista.php"): ?> class="nav-link active" 
+                    <a href="contacto_lista.php" <?php if ($_SERVER['SCRIPT_NAME'] == "/contacto_lista.php"): ?> class="nav-link active"
                         <?php else: ?> class="nav-link" <?php endif ?>>ADMINISTRACIÓN
                     </a>
                 </li>
-            <?php endif; ?>
-            <li class="nav-item">
-                <?php
-                /*UD 4.1.a
+                <li class="nav-item">
+                    <?php
+                    /*
+                UD 4.1.e
+                //Mostrar nueva opción de logout si la cookie existe.
+                */
+                    ?>
+                    <?php
+                    /*
+                    UD 4.1.f
+                    //Al hacer click en logout le mando una variable por URL
+                    */
+                    ?>
+                    <a href="?logout=true" class="nav-link">LOGOUT
+                    </a>
+                </li>
+            <?php else: ?>
+                <li class="nav-item">
+                    <?php
+                    /*UD 4.1.a
                 Nueva opción de login que lleva que lleva al formulario para iniciar sesión
                 
                 UD 4.1.e
                 //Ocultar la opción de login si la cookie existe.
-                */     
-                ?>
-                <?php if(!isset($_COOKIE["user_email"])): //Si la cookie no existe muestra LOGIN?> 
+                */
+                    ?>
                     <a href="login.php" <?php if ($_SERVER['SCRIPT_NAME'] == "/login.php"): ?> class="nav-link active"
                         <?php else: ?> class="nav-link" <?php endif ?>>LOGIN
                     </a>
-                <?php endif; ?>
-            </li>
-            <li class="nav-item">
-                <?php
-                /*
-                UD 4.1.e
-                //Mostrar nueva opción de logout si la cookie existe.
-                */     
-                ?>
-                <?php if(isset($_COOKIE["user_email"])): //Si la cookie existe muestra LOGOUT?> 
-                    <?php 
-                    /*
-                    UD 4.1.f
-                    //Al hacer click en logout le mando una variable por URL
-                    */     
-                    ?>
-                    <a href="?logout=true" class="nav-link">LOGOUT
-                    </a>
-                <?php endif; ?>
-            </li>
+                </li>
+            <?php endif; ?>
+
         </ul>
     </header>

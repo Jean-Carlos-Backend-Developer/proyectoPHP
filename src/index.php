@@ -7,6 +7,8 @@
 $productos = devuelve_array_fecha($productos);
 //var_dump($productos);
 
+$usuario = isset($_COOKIE["user_email"]) ? $_COOKIE["user_email"] : "";
+
 /*==========================================================================================================================================*/
 //Filtro por categoria 
 /*UD 3.3.f 
@@ -106,17 +108,15 @@ endif;
 <div class="container mb-5">
     <div class="row">
         <div class="col-12 d-flex justify-content-center my-3 gap-2">
-            <a href="/?categoria=<?= $categoriaId ?>&orden=asc" <?php
-              //Código mio adicional para cambiar la clase del botón según el orden seleccionado 
-              //y que el botón activo se vea diferente al inactivo
-              ?>
+            <a href="/?categoria=<?= $categoriaId ?>&orden=asc"
+                <?php //Cambiar la clase del botón según el orden seleccionado 
+                ?>
                 class="btn <?= ($orden == 'asc') ? 'btn-primary' : 'btn-outline-primary'; ?>">
                 Ordenar A-Z
             </a>
-            <a href="/?categoria=<?= $categoriaId ?>&orden=desc" <?php
-              //Código mio adicional para cambiar la clase del botón según el orden seleccionado 
-              //y que el botón activo se vea diferente al inactivo
-              ?>
+            <a href="/?categoria=<?= $categoriaId ?>&orden=desc"
+                <?php //Cambiar la clase del botón según el orden seleccionado 
+                ?>
                 class="btn <?= ($orden == 'desc') ? 'btn-primary' : 'btn-outline-secondary'; ?>">
                 Ordenar Z-A
             </a>
@@ -124,9 +124,10 @@ endif;
             //UD 3.3.h
             //Botón que borra el último de los elementos del array de productos usando array_pop,
             //Más adelante pondré esta funcionalidad en la pantalla de producto, para borrar un producto seleccionado 
-            //por id y no el último. ?>
-            <a href="/?delete=true&pagina=<?= $paginaActual ?>&orden=<?= $orden ?>&sort_date=<?= $sort_date ?>" class="btn btn-danger" <?php if (!empty($categoriaId))
-                echo 'hidden'; ?>>
+            //por id y no el último. 
+            ?>
+            <a href="/?delete=true&pagina=<?= $paginaActual ?>&orden=<?= $orden ?>&sort_date=<?= $sort_date ?>"
+                class="btn btn-danger" <?= (!empty($categoriaId)) ? 'hidden' : ""; ?>>
                 Borrar último producto
             </a>
         </div>
@@ -159,7 +160,7 @@ endif;
                 recuperar el id del producto y mostrarlo en una card en producto.php.
                 */
                 ?>
-                <a href="producto.php?id=<?= $producto["id"] ?>" class="p-5">
+                <a href="<?= (!$usuario) ? "producto.php?id=" . $producto["id"] : "editar_producto.php"; ?>" class="p-5">
                     <div class="card">
                         <?php
                         /*UD 3.2.d

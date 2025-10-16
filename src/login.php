@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             En caso de que usuario y contraseña sean correctas inicia sesion correctamente y redirige a la página 
             de contacto_lista.php. 
             */ 
-            header("Location:http://localhost:8090/contacto_lista.php");
+            header("Location:contacto_lista.php");
             exit;
 
             // echo "LOGUEADO CON ÉXITO";

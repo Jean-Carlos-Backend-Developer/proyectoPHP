@@ -12,83 +12,82 @@ $categorias = [
 
 /*UD 3.3.a
 Construcción del array asociativo con productos de los mas real posible con imagen distita para cada uno 
-para luego poder usarlo en la página productos.php
-ESTÁ TODO COMENTADO PORQUE HAGO USO DE DOS JSON, QUE LUEGO CONVERTÍ A ARRAY MAS ABAJO DE OTRO EJERCICIO*/
+para luego poder usarlo en la página productos.php*/
 
-// $productos = [
-//     [
-//         "id" => 1,
-//         "nombre" => "MacBook Pro",
-//         "descripcion" => "Portátil de alto rendimiento con chip M2",
-//         "imagen" => "static/images/macbookpro.jpeg",
-//         "precio" => 399.99,
-//         "fecha" => "15/11/2021",
-//         "categorias" => [1, 5]
-//     ],
-//     [
-//         "id" => 6,
-//         "nombre" => "Asus ROG Ally",
-//         "descripcion" => "PC híbrido con gráfica dedicada NVIDIA",
-//         "imagen" => "static/images/rog-ally.webp",
-//         "precio" => 120.22,
-//         "fecha" => "10/10/2023",
-//         "categorias" => [1, 3]
-//     ],
-//     [
-//         "id" => 4,
-//         "nombre" => "iPhone 14 Pro",
-//         "descripcion" => "Teléfono móvil de nueva generación",
-//         "imagen" => "static/images/iphone14pro.jpg",
-//         "precio" => 650.35,
-//         "fecha" => "20/09/2022",
-//         "categorias" => [2]
-//     ],
-//     [
-//         "id" => 8,
-//         "nombre" => "Samsung Galaxy S23",
-//         "descripcion" => "Smartphone Android de gama alta",
-//         "imagen" => "static/images/galaxys29.jpg",
-//         "precio" => 1480.99,
-//         "fecha" => "30/08/2020",
-//         "categorias" => [2]
-//     ],
-//     [
-//         "id" => 7,
-//         "nombre" => "PlayStation 5",
-//         "descripcion" => "Consola de videojuegos de última generación",
-//         "imagen" => "static/images/ps5.jpg",
-//         "precio" => 650.49,
-//         "fecha" => "25/07/2024",
-//         "categorias" => [3]
-//     ],
-//     [
-//         "id" => 3,
-//         "nombre" => "Xbox Series X",
-//         "descripcion" => "Consola potente con soporte para juegos en 4K",
-//         "imagen" => "static/images/xboxseriesx.jpg",
-//         "precio" => 399.99,
-//         "fecha" => "15/06/2019",
-//         "categorias" => [3]
-//     ],
-//     [
-//         "id" => 5,
-//         "nombre" => "AirPods Pro",
-//         "descripcion" => "Auriculares inalámbricos con cancelación de ruido",
-//         "imagen" => "static/images/Airpods.jpg",
-//         "precio" => 225.32,
-//         "fecha" => "05/05/2025",
-//         "categorias" => [4]
-//     ],
-//     [
-//         "id" => 2,
-//         "nombre" => "Logitech MX Master 3",
-//         "descripcion" => "Ratón inalámbrico ergonómico y preciso",
-//         "imagen" => "static/images/logitech.jpg",
-//         "precio" => 89.99,
-//         "fecha" => "01/04/2023",
-//         "categorias" => [4]
-//     ]
-// ];
+$productos = [
+    [
+        "id" => 1,
+        "nombre" => "MacBook Pro",
+        "descripcion" => "Portátil de alto rendimiento con chip M2",
+        "imagen" => "static/images/macbookpro.jpeg",
+        "precio" => 399.99,
+        "fecha" => "15/11/2021",
+        "categorias" => [1, 5]
+    ],
+    [
+        "id" => 6,
+        "nombre" => "Asus ROG Ally",
+        "descripcion" => "PC híbrido con gráfica dedicada NVIDIA",
+        "imagen" => "static/images/rog-ally.webp",
+        "precio" => 120.22,
+        "fecha" => "10/10/2023",
+        "categorias" => [1, 3]
+    ],
+    [
+        "id" => 4,
+        "nombre" => "iPhone 14 Pro",
+        "descripcion" => "Teléfono móvil de nueva generación",
+        "imagen" => "static/images/iphone14pro.jpg",
+        "precio" => 650.35,
+        "fecha" => "20/09/2022",
+        "categorias" => [2]
+    ],
+    [
+        "id" => 8,
+        "nombre" => "Samsung Galaxy S23",
+        "descripcion" => "Smartphone Android de gama alta",
+        "imagen" => "static/images/galaxys29.jpg",
+        "precio" => 1480.99,
+        "fecha" => "30/08/2020",
+        "categorias" => [2]
+    ],
+    [
+        "id" => 7,
+        "nombre" => "PlayStation 5",
+        "descripcion" => "Consola de videojuegos de última generación",
+        "imagen" => "static/images/ps5.jpg",
+        "precio" => 650.49,
+        "fecha" => "25/07/2024",
+        "categorias" => [3]
+    ],
+    [
+        "id" => 3,
+        "nombre" => "Xbox Series X",
+        "descripcion" => "Consola potente con soporte para juegos en 4K",
+        "imagen" => "static/images/xboxseriesx.jpg",
+        "precio" => 399.99,
+        "fecha" => "15/06/2019",
+        "categorias" => [3]
+    ],
+    [
+        "id" => 5,
+        "nombre" => "AirPods Pro",
+        "descripcion" => "Auriculares inalámbricos con cancelación de ruido",
+        "imagen" => "static/images/Airpods.jpg",
+        "precio" => 225.32,
+        "fecha" => "05/05/2025",
+        "categorias" => [4]
+    ],
+    [
+        "id" => 2,
+        "nombre" => "Logitech MX Master 3",
+        "descripcion" => "Ratón inalámbrico ergonómico y preciso",
+        "imagen" => "static/images/logitech.jpg",
+        "precio" => 89.99,
+        "fecha" => "01/04/2023",
+        "categorias" => [4]
+    ]
+];
 
 
 //UD 3.3.g

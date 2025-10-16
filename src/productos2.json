@@ -5,7 +5,7 @@
         "descripcion": "Consola de videojuegos de \u00faltima generaci\u00f3n",
         "imagen": "static\/images\/ps5.jpg",
         "precio": 650.49,
-        "fecha": "25\/07\/2023",
+        "fecha": "25\/07\/2024",
         "categorias": [
             3
         ]
@@ -16,7 +16,7 @@
         "descripcion": "Consola potente con soporte para juegos en 4K",
         "imagen": "static\/images\/xboxseriesx.jpg",
         "precio": 399.99,
-        "fecha": "15\/06\/2023",
+        "fecha": "15\/06\/2019",
         "categorias": [
             3
         ]
@@ -27,7 +27,7 @@
         "descripcion": "Auriculares inal\u00e1mbricos con cancelaci\u00f3n de ruido",
         "imagen": "static\/images\/Airpods.jpg",
         "precio": 225.32,
-        "fecha": "05\/05\/2023",
+        "fecha": "05\/05\/2025",
         "categorias": [
             4
         ]

@@ -10,10 +10,12 @@ $tipoErr = validar_tipo();
 
 $tipo = isset($_POST["tipo"]) ? $_POST["tipo"] : ""; //Para que guarde el tipo si falla al enviar algo por post
 
+//Validación mensaje
 if (!empty($_POST["mensaje"])) {
     $mensaje = test_input($_POST["mensaje"]);
 }
 
+//Procesar el fichero
 if (!empty($_FILES['archivo'])) {
     $nombreArchivo = $_FILES['archivo']['name'];
     move_uploaded_file($_FILES['archivo']['tmp_name'], "/var/www/html/uploads/{$nombreArchivo}");

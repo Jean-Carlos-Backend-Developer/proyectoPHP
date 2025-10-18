@@ -1,22 +1,25 @@
 <?php
-$categoriaId = isset($_GET["categoria"]) ? $_GET["categoria"] : null; //Coger categoria de la URL
-
-
-$usuario = isset($_COOKIE["user_email"]) ? $_COOKIE["user_email"] : ""; //Recoger usuario de la cookie
-
-
 /*
 UD 4.1.f
 //Recojo la variable que mandé antes por la URL y si es true borro la cookie, poniendo ésta 
 a un valor negativo, esto hace que se oculte el menú de ADMINISTRACION y se muestre la opción
 de LOGIN otra vez.
 */
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $logout = isset($_GET["logout"]) ? $_GET["logout"] : null;
-if ($logout == true) {
-    setcookie("user_email", "", time() - 3600);
+if ($logout) {
+    session_unset();
+    session_destroy();
     header("Location: /");
     exit;
 }
+
+$categoriaId = isset($_GET["categoria"]) ? $_GET["categoria"] : null; //Coger categoria de la URL
+$usuario = isset($_SESSION["user_email"]) ? $_SESSION["user_email"] : ""; //Recoger usuario de la cookie
+
 ?>
 <?php include_once("datos.php"); ?>
 <?php include_once("utiles.php"); ?>
@@ -120,7 +123,7 @@ if ($logout == true) {
             ?>
             <?php if ($usuario): ?>
                 <li class="nav-item">
-                    <a href="contacto_lista.php" <?php if ($_SERVER['SCRIPT_NAME'] == "/contacto_lista.php"): ?> class="nav-link active"
+                    <a href="crear_editar_producto.php" <?php if ($_SERVER['SCRIPT_NAME'] == "/crear_editar_producto.php"): ?> class="nav-link active"
                         <?php else: ?> class="nav-link" <?php endif ?>>ADMINISTRACIÓN
                     </a>
                 </li>
@@ -137,7 +140,7 @@ if ($logout == true) {
                     //Al hacer click en logout le mando una variable por URL
                     */
                     ?>
-                    <a href="?logout=true" class="nav-link">LOGOUT
+                    <a href="/?logout=true" class="nav-link">LOGOUT
                     </a>
                 </li>
             <?php else: ?>

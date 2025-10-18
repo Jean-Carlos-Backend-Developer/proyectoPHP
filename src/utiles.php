@@ -159,6 +159,5 @@ function ordenaPorFechaDesc($productos)
 
     });
     return $productos;
-
 }
 ?>

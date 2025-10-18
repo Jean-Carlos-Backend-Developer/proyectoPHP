@@ -38,7 +38,7 @@
         "id": 8,
         "nombre": "Samsung Galaxy S23",
         "descripcion": "Smartphone Android de gama alta",
-        "imagen": "static\/images\/galaxys29.jpg",
+        "imagen": "",
         "precio": 1480.99,
         "fecha": "30\/08\/2020",
         "categorias": [

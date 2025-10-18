@@ -7,7 +7,7 @@
 $productos = devuelve_array_fecha($productos);
 //var_dump($productos);
 
-$usuario = isset($_COOKIE["user_email"]) ? $_COOKIE["user_email"] : "";
+$usuario = isset($_SESSION["user_email"]) ? $_SESSION["user_email"] : "";
 
 /*==========================================================================================================================================*/
 //Filtro por categoria 
@@ -146,6 +146,10 @@ endif;
                 class="btn <?= ($sort_date == -1) ? 'btn-primary' : 'btn-outline-secondary'; ?>">
                 Fecha ↓
             </a>
+            <a href="/crear_editar_producto.php"
+                class="btn btn-success" <?= (!empty($categoriaId)) ? 'hidden' : ""; ?>>
+                Crear producto
+            </a>
         </div>
     </div>
 </div>
@@ -160,7 +164,7 @@ endif;
                 recuperar el id del producto y mostrarlo en una card en producto.php.
                 */
                 ?>
-                <a href="<?= (!$usuario) ? "producto.php?id=" . $producto["id"] : "editar_producto.php"; ?>" class="p-5">
+                <a href="<?= (!$usuario) ? "producto.php?id=" . $producto["id"] : "crear_editar_producto.php?productoId=" . $producto["id"]; ?>" class="p-5">
                     <div class="card">
                         <?php
                         /*UD 3.2.d

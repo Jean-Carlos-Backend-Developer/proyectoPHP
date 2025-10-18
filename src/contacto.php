@@ -17,7 +17,7 @@ if (!empty($_POST["mensaje"])) {
 if (!empty($_FILES['archivo'])) {
     $nombreArchivo = $_FILES['archivo']['name'];
     move_uploaded_file($_FILES['archivo']['tmp_name'], "/var/www/html/uploads/{$nombreArchivo}");
-    if ($nombreArchivo){
+    if ($nombreArchivo) {
         $pathArchivo = "uploads/{$nombreArchivo}";
     }
 }
@@ -54,13 +54,15 @@ if (!empty($_FILES['archivo'])) {
         <div class="row mb-4">
             <!-- Tipo -->
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="tipo" id="particularID" value="particular" <?php if (isset($tipo) && $tipo == "particular")
-                    echo "checked"; ?>>
+                <input class="form-check-input" type="radio" name="tipo" id="particularID" value="particular"
+                    <?php if (isset($tipo) && $tipo == "particular")
+                        echo "checked"; ?>>
                 <label class="form-check-label" for="particularID"> Particular </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="tipo" id="empresaID" value="empresa" <?php if (isset($tipo) && $tipo == "empresa")
-                    echo "checked"; ?>>
+                <input class="form-check-input" type="radio" name="tipo" id="empresaID" value="empresa"
+                    <?php if (isset($tipo) && $tipo == "empresa")
+                        echo "checked"; ?>>
                 <label class="form-check-label" for="empresaID"> Empresa </label>
             </div>
             <span class="text-danger"> <?php echo $tipoErr ?> </span>

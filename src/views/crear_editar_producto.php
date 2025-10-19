@@ -1,6 +1,5 @@
-<?php include_once("templates/header.php"); ?>
-<?php include_once("datos.php"); ?>
-<?php include_once("utiles.php"); ?>
+<?php include_once(__DIR__ . "/../datos.php"); ?>
+<?php include_once(__DIR__ . "/../utils/utiles.php"); ?>
 
 <?php
 
@@ -86,5 +85,3 @@ $imagen = isset($productoObj["imagen"]) && $productoObj["imagen"] != "" ? $produ
 
     </form>
 </div>
-
-<?php include("templates/footer.php"); ?>

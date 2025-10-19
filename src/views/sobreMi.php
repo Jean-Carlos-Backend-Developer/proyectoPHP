@@ -1,11 +1,8 @@
-<?php include("templates/header.php"); ?>
-<?php include("datos.php"); ?>
-
 <div class="container">
     <h2 class="mb-5">Sobre mí</h2>
     <div class="row">
         <div class="col-md">
-            <img src="static/images/businessman.jpg" class="img-fluid rounded">
+            <img src="../static/images/businessman.jpg" class="img-fluid rounded">
         </div>
         <div class="col-md">
             <?php
@@ -21,5 +18,3 @@
         </div>
     </div>
 </div>
-
-<?php include("templates/footer.php"); ?>

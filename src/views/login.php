@@ -1,7 +1,5 @@
-<?php include_once("datos.php"); ?>
-<?php include_once("utiles.php"); ?>
-<?php include_once("config/config.php"); ?>
-<?php include_once("templates/header.php"); ?>
+<?php include_once(__DIR__ . "/../utils/utiles.php"); ?>
+<?php include_once(__DIR__ . "/../config/config.php"); ?>
 
 <?php
 /*UD 4.1.a
@@ -10,7 +8,7 @@ pulsarlo ejecuta las validacioes necesarias.
 */ 
 ?>
 <div class="container">
-    <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+    <form action="/?page=login" method="POST">
 
         <div class="mb-3 col-sm-6 p-0">
             <label for="correoId" class="form-label">Email</label>
@@ -29,5 +27,3 @@ pulsarlo ejecuta las validacioes necesarias.
         <button type="submit" class="btn btn-success">Login</button>
     </form>
 </div>
-
-<?php include("templates/footer.php"); ?>

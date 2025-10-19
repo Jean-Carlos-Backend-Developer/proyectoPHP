@@ -1,6 +1,5 @@
-<?php include_once("templates/header.php"); ?>
-<?php include_once("datos.php"); ?>
-<?php include_once("utiles.php"); ?>
+<?php include_once(__DIR__ . "/../datos.php"); ?>
+<?php include_once(__DIR__ . "/../utils/utiles.php"); ?>
 
 <?php
 $nameErr = validar_texto();
@@ -24,7 +23,7 @@ if (!empty($_FILES['archivo'])) {
 
 ?>
 <div class="container">
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
+    <form action="/?page=contacto" method="POST" enctype="multipart/form-data">
         <div class="row">
             <!-- Nombre y Apellido -->
             <div class="mb-3 col-sm-6 p-0">
@@ -84,5 +83,3 @@ if (!empty($_FILES['archivo'])) {
         <button type="submit" class="btn btn-success">Enviar</button>
     </form>
 </div>
-
-<?php include("templates/footer.php"); ?>

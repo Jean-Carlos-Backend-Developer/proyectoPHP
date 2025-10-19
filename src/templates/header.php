@@ -1,8 +1,8 @@
 <?php
 /*
 UD 4.1.f
-//Recojo la variable que mandé antes por la URL y si es true borro la cookie, poniendo ésta 
-a un valor negativo, esto hace que se oculte el menú de ADMINISTRACION y se muestre la opción
+//Recojo la variable que mandé antes por la URL y si es true destruyo la sesion, esto 
+hace que se oculte el menú de ADMINISTRACION y se muestre la opción
 de LOGIN otra vez.
 */
 if (session_status() === PHP_SESSION_NONE) {
@@ -19,10 +19,11 @@ if ($logout) {
 
 $categoriaId = isset($_GET["categoria"]) ? $_GET["categoria"] : null; //Coger categoria de la URL
 $usuario = isset($_SESSION["user_email"]) ? $_SESSION["user_email"] : ""; //Recoger usuario de la cookie
+$pagina = isset($_GET["page"]) ? $_GET["page"] : "home"; //Recoger la página para activar los botones del header
 
 ?>
-<?php include_once("datos.php"); ?>
-<?php include_once("utiles.php"); ?>
+<?php include_once(__DIR__ . "/../datos.php"); ?>
+<?php include_once(__DIR__ . "/../utils/utiles.php"); ?>
 <html>
 
 <head>
@@ -48,7 +49,7 @@ $usuario = isset($_SESSION["user_email"]) ? $_SESSION["user_email"] : ""; //Reco
 <body class="d-flex flex-column min-vh-100">
 
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <a href="/?page=home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
             <svg class="bi me-2" width="40" height="32">
                 <use xlink:href="#bootstrap"></use>
             </svg>
@@ -63,9 +64,7 @@ $usuario = isset($_SESSION["user_email"]) ? $_SESSION["user_email"] : ""; //Reco
                 usamos la linea de href="/", además 
                 */
                 ?>
-                <a href="/" <?php if ($_SERVER['SCRIPT_NAME'] == "/index.php" and empty($categoriaId)): ?>
-                    class="nav-link active" <?php else: ?> class="nav-link" <?php endif ?>>INICIO
-                </a>
+                <a href="/?page=home" class="nav-link <?= ($pagina == '' || $pagina == 'home') && !$categoriaId ? 'active' : '' ?>">INICIO</a>
             </li>
             <li class="nav-item">
                 <?php
@@ -101,9 +100,7 @@ $usuario = isset($_SESSION["user_email"]) ? $_SESSION["user_email"] : ""; //Reco
                 usamos la linea de href="/"
                 */
                 ?>
-                <a href="sobreMi.php" <?php if ($_SERVER['SCRIPT_NAME'] == "/sobreMi.php"): ?> class="nav-link active"
-                    <?php else: ?> class="nav-link" <?php endif ?>>SOBRE MÍ
-                </a>
+                <a href="/?page=sobreMi" class="nav-link <?= ($pagina == 'sobreMi') ? 'active' : '' ?>">SOBRE MÍ</a>
             </li>
             <li class="nav-item">
                 <?php
@@ -112,9 +109,7 @@ $usuario = isset($_SESSION["user_email"]) ? $_SESSION["user_email"] : ""; //Reco
                 usamos la linea de href="contacto.php"
                 */
                 ?>
-                <a href="contacto.php" <?php if ($_SERVER['SCRIPT_NAME'] == "/contacto.php"): ?> class="nav-link active"
-                    <?php else: ?> class="nav-link" <?php endif ?>>CONTACTO
-                </a>
+                <a href="/?page=contacto" class="nav-link <?= ($pagina == "contacto") ? 'active' : '' ?>">CONTACTO</a>
             </li>
             <?php
             /*UD 4.1.e
@@ -123,9 +118,7 @@ $usuario = isset($_SESSION["user_email"]) ? $_SESSION["user_email"] : ""; //Reco
             ?>
             <?php if ($usuario): ?>
                 <li class="nav-item">
-                    <a href="crear_editar_producto.php" <?php if ($_SERVER['SCRIPT_NAME'] == "/crear_editar_producto.php"): ?> class="nav-link active"
-                        <?php else: ?> class="nav-link" <?php endif ?>>ADMINISTRACIÓN
-                    </a>
+                    <a href="/?page=crear_editar" class="nav-link <?= ($pagina == "crear_editar") ? 'active' :  '' ?>">ADMINISTRACIÓN</a>
                 </li>
                 <li class="nav-item">
                     <?php
@@ -153,8 +146,7 @@ $usuario = isset($_SESSION["user_email"]) ? $_SESSION["user_email"] : ""; //Reco
                 //Ocultar la opción de login si la cookie existe.
                 */
                     ?>
-                    <a href="login.php" <?php if ($_SERVER['SCRIPT_NAME'] == "/login.php"): ?> class="nav-link active"
-                        <?php else: ?> class="nav-link" <?php endif ?>>LOGIN
+                    <a href="/?page=login" class="nav-link <?= ($pagina == "logout") ? 'active': '' ?>">LOGIN
                     </a>
                 </li>
             <?php endif; ?>

@@ -1,5 +1,4 @@
 <?php
-
 function ordenaPorNombreAsc($productos)
 {
     usort($productos, function ($a, $b) {
@@ -160,4 +159,3 @@ function ordenaPorFechaDesc($productos)
     });
     return $productos;
 }
-?>

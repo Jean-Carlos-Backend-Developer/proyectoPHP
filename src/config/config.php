@@ -1,6 +1,6 @@
 <?php
-include_once("datos.php");
-include_once("utiles.php");
+include_once(__DIR__ . "/../datos.php");
+include_once(__DIR__ . "/../utils/utiles.php");
 
 if(session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Leo el fichero JSON de usuarios y lo decodifico, luego compruebo mas abajo si el usuario 
         y contraseña introducidos existen en el array decodificado.
         */
-        $usuarios = json_decode(file_get_contents("usuarios.json"), true);
+        $usuarios = json_decode(file_get_contents("mysql/usuarios.json"), true);
         if ($usuarios === null) { //Si falla al hacer el decode inicializamos el array a vacio 
             $usuarios = [];       //esto se hace para que no falle el programa.
         }
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             En caso de que usuario y contraseña sean correctas inicia sesion correctamente y redirige a la página 
             de contacto_lista.php. 
             */ 
-            header("Location:crear_editar_producto.php");
+            header("Location:/?page=crear_editar");
             exit;
 
             // echo "LOGUEADO CON ÉXITO";
@@ -73,4 +73,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-?>

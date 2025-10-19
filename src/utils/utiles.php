@@ -11,10 +11,8 @@ function ordenaPorNombreDesc($productos)
 {
     usort($productos, function ($a, $b) {
         return strtoupper($b['nombre']) <=> strtoupper($a['nombre']);
-
     });
     return $productos;
-
 }
 
 function test_input($data)
@@ -70,10 +68,63 @@ function validar_texto()
             $err = "Por favor, introduzca nombre y apellidos";
         } else {
             $name = test_input($_POST["nombreApellidos"]); //Limpiamos el texto
-            if (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ' -]*$/u",$name)) {
+            if (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ' -]*$/u", $name)) {
                 $err = "Solo se permiten letras y espacios.";
             } else {
                 $err = "";
+            }
+        }
+    }
+    return $err;
+}
+
+function validar_clave()
+{
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["clave"])) {
+            $err = "Por favor, introduzca la clave";
+        } else {
+            $clave = test_input($_POST["clave"]);
+            if (!preg_match("/^\d+$/", $clave)) {
+                $err = "Solo se permiten números positivos sin espacios.";
+            } else {
+                $err = "";
+            }
+        }
+    }
+    return $err;
+}
+
+function validar_titulo()
+{
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["titulo"])) {
+            $err = "Por favor, introduzca el título";
+        } else {
+            $titulo = test_input($_POST["titulo"]);
+            if (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ' -]*$/u", $titulo)) {
+                $err = "Solo se permiten números positivos sin espacios.";
+            } else {
+                $err = "";
+            }
+        }
+    }
+    return $err;
+}
+
+function validar_fecha()
+{
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (!empty($_POST["fecha"])) {
+            $fecha = test_input($_POST["fecha"]);
+            $valores = explode("/", $fecha);
+            if (count($valores) == 3 && checkdate($valores[1], $valores[0], $valores[2])) {
+                $err = "";
+            } else {
+                $err = "El formato de la fecha es incorrecto. (DD/MM/YYYY).";
             }
         }
     }
@@ -98,7 +149,7 @@ function validar_contrasenya()
     return $err;
 }
 
-function validar_tipo() 
+function validar_tipo()
 {
     $err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -108,6 +159,54 @@ function validar_tipo()
     }
     return $err;
 }
+
+function validar_mensaje()
+{
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (!empty($_POST["mensaje"])) {
+            $mensaje = test_input($_POST["mensaje"]);
+            if (strlen($mensaje) > 500) {
+                $err = "El mensaje no puede superar los 500 caracteres.";
+            }
+        }
+    }
+    return $err;
+}
+
+function validar_descripcion()
+{
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["descripcion"])) {
+            $err = "El campo descripción es obligatorio.";
+        } else {
+            $mensaje = test_input($_POST["mensaje"]);
+            if (strlen($mensaje) > 500) {
+                $err = "El mensaje no puede superar los 500 caracteres.";
+            }
+        }
+    }
+    return $err;
+}
+
+function validar_imagen()
+{
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_FILES["imagen"]) && $_FILES["imagen"]["error"] == 0) {
+            $nombreArchivo = $_FILES["imagen"]["name"];
+            $partes = explode(".", $nombreArchivo); //Como split de java
+            $extension = strtolower(end($partes)); //Coge el último elemento del array
+            $extensiones = ["png", "jpg", "jpeg", "webp"];
+            if (!in_array($extension, $extensiones)) {
+                $err = "El archivo debe ser una imagen.";
+            }
+        }
+    }
+    return $err;
+}
+
 
 /* UD 3.5a 
 Creación de función que devuelve el año actual para luego ponerla en el header junto a 
@@ -155,7 +254,6 @@ function ordenaPorFechaDesc($productos)
 {
     usort($productos, function ($a, $b) {
         return ($b['fecha']) <=> ($a['fecha']);
-
     });
     return $productos;
 }

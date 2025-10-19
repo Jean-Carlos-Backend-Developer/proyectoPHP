@@ -126,10 +126,18 @@ if (!file_exists($fichero1) || !file_exists($fichero2)) {
 
 }
 
-//Lectura y unión de ambos ficheros JSON
+//Decodifico los array y los guardo en dos fichero json distintos
 $productos1 = json_decode(file_get_contents($fichero1), true);
 $productos2 = json_decode(file_get_contents($fichero2), true);
-$productos = array_merge($productos1, $productos2);
+
+$fichero3 = __DIR__ . "/mysql/productos.json";
+
+if (!file_exists($fichero3)) {
+    $productos = array_merge($productos1, $productos2); //Junto ambos ficheros
+    $miJson3 = json_encode($productos, JSON_PRETTY_PRINT); //Codifico el array a JSON
+    file_put_contents($fichero3, $miJson3); //Escribo el fichero JSON
+}
+
 
 /*UD 3.2.c
 Creación de la variable donde se almacene el nombre y el apellido para luego usarlo

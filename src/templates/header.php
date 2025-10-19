@@ -86,7 +86,7 @@ $pagina = isset($_GET["page"]) ? $_GET["page"] : "home"; //Recoger la página pa
                     ?>
                     <?php foreach ($categorias as $id => $categoria): ?>
                         <li>
-                            <a class="dropdown-item" href="/?categoria=<?= $id ?>">
+                            <a class="dropdown-item" href="/?page=home&categoria=<?= $id ?>">
                                 <?= $categoria ?>
                             </a>
                         </li>
@@ -118,7 +118,7 @@ $pagina = isset($_GET["page"]) ? $_GET["page"] : "home"; //Recoger la página pa
             ?>
             <?php if ($usuario): ?>
                 <li class="nav-item">
-                    <a href="/?page=crear_editar" class="nav-link <?= ($pagina == "crear_editar") ? 'active' :  '' ?>">ADMINISTRACIÓN</a>
+                    <a href="/?page=contacto_lista" class="nav-link <?= ($pagina == "contacto_lista") ? 'active' :  '' ?>">ADMINISTRACIÓN</a>
                 </li>
                 <li class="nav-item">
                     <?php

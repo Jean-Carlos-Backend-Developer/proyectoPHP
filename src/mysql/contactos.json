@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Jean Esp\u00edn",
+        "email": "espinjcmorales@gmail.com",
+        "phone": "923456789",
+        "tipo": "empresa",
+        "mensaje": "mensaje de Jean",
+        "file": "uploads\/flujo_git_mac.txt",
+        "id": 1
+    },
+    {
+        "name": "Juanito Ruiz",
+        "email": "juanito@gmail.com",
+        "phone": "987654873",
+        "tipo": "empresa",
+        "mensaje": "Menaje de juanito",
+        "file": "uploads\/Horario.png",
+        "id": 2
+    },
+    {
+        "name": "Antony",
+        "email": "antoy@gmail.es",
+        "phone": "987654874",
+        "tipo": "particular",
+        "mensaje": "Este es algo que necesito yaaa!",
+        "file": null,
+        "id": 3
+    }
+]

@@ -10,10 +10,19 @@ $pagina = isset($_GET["page"]) ? $_GET["page"] : "";
 //Redirigir a la página correspondiente
 switch ($pagina) {
     case "sobreMi":
-        include(__DIR__ . "/views/sobreMi.php");
+        include(__DIR__ . "/views/sobre_mi.php");
         break;
     case "contacto":
         include(__DIR__ . "/views/contacto.php");
+        break;
+    case "confirma_contacto":
+        include(__DIR__ . "/views/confirma_contacto.php");
+        break;
+    case "contacto_lista":
+        include(__DIR__ . "/views/contacto_lista.php");
+        break;
+    case "contacto_detalle":
+        include(__DIR__ . "/views/contacto_detalle.php");
         break;
     case "login":
         include(__DIR__ . "/views/login.php");

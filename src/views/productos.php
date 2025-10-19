@@ -1,4 +1,12 @@
 <?php
+$ficheroProductos = __DIR__ . "/../mysql/productos.json";
+$productos = [];
+
+if (file_exists($ficheroProductos)) {
+    $contenidoJson = file_get_contents($ficheroProductos);
+    $productos = json_decode($contenidoJson, true);
+}
+
 //Primero uso la función que sobreescribe el array de productos
 $productos = devuelve_array_fecha($productos);
 //var_dump($productos);
@@ -77,7 +85,9 @@ $totalPaginas = ceil($totalProductos / $elemPagina); //Ceil redondea a entero la
 //Borrado de productos
 //UD 3.3.h Borrar el último elemento del array, ademas de un pequeño añadido que crea un mensaje de éxito al borrar producto
 if (isset($_GET["delete"]) && $_GET["delete"] === "true"): //Si existe delete y si ésta es igual a "true" borramos 
+    //No borro del JSON solo del array que muestro, luego con base de datos si borrare de la base de datos
     array_pop($productosPagina);
+
     echo '
         <div class="position-fixed end-0 p-3" style="z-index: 11; top: 60px;">
         <div id="toastBorrar" class="toast align-items-center text-white bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
@@ -142,7 +152,7 @@ endif;
                 class="btn <?= ($sort_date == -1) ? 'btn-primary' : 'btn-outline-secondary'; ?>">
                 Fecha ↓
             </a>
-            <a href="/crear_editar_producto.php"
+            <a href="/?page=crear_editar"
                 class="btn btn-success" <?= (!empty($categoriaId)) ? 'hidden' : ""; ?>>
                 Crear producto
             </a>
@@ -151,6 +161,11 @@ endif;
 </div>
 
 <div class="container mb-5">
+    
+    <?php if (!empty($categoriaId) && array_key_exists($categoriaId, $categorias)) : ?>
+        <h1 class="text-center"><?= $categorias[$categoriaId] ?></h1>
+    <?php endif ; ?>
+
     <div class="row">
         <?php foreach ($productosPagina as $producto): ?>
             <div class="col-sm-3">

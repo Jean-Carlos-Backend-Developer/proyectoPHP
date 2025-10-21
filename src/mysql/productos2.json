@@ -1,6 +1,7 @@
 [
     {
         "id": 7,
+        "clave": "PROD0007",
         "nombre": "PlayStation 5",
         "descripcion": "Consola de videojuegos de \u00faltima generaci\u00f3n",
         "imagen": "static\/images\/ps5.jpg",
@@ -12,6 +13,7 @@
     },
     {
         "id": 3,
+        "clave": "PROD0003",
         "nombre": "Xbox Series X",
         "descripcion": "Consola potente con soporte para juegos en 4K",
         "imagen": "static\/images\/xboxseriesx.jpg",
@@ -23,6 +25,7 @@
     },
     {
         "id": 5,
+        "clave": "PROD0005",
         "nombre": "AirPods Pro",
         "descripcion": "Auriculares inal\u00e1mbricos con cancelaci\u00f3n de ruido",
         "imagen": "static\/images\/Airpods.jpg",
@@ -34,6 +37,7 @@
     },
     {
         "id": 2,
+        "clave": "PROD0002",
         "nombre": "Logitech MX Master 3",
         "descripcion": "Rat\u00f3n inal\u00e1mbrico ergon\u00f3mico y preciso",
         "imagen": "static\/images\/logitech.jpg",

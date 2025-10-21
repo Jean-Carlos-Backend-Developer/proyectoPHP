@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $ficheroContactos = "mysql/contactos.json";
 
-        //Comprueba si el fichero existe
+        //Comprueba si el fichero no existe
         if (!file_exists($ficheroContactos)) {
             file_put_contents($ficheroContactos, json_encode([]));
         }
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         array_push($tempArray, $contacto); //Añado al array temporal el nuevo contacto
         $contactos_json = json_encode($tempArray, JSON_PRETTY_PRINT); //Codifico el array y lo guardo en json
-        file_put_contents('mysql/contactos.json', $contactos_json); //Escribo el fichero json
+        file_put_contents($ficheroContactos, $contactos_json); //Escribo el fichero json
 
         echo '
             <script type="text/javascript">

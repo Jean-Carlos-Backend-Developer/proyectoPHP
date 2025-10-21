@@ -78,23 +78,22 @@ function validar_texto()
     return $err;
 }
 
-function validar_clave()
+function validar_clave($productos, $productoActualId = null)
 {
     $err = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["clave"])) {
-            $err = "Por favor, introduzca la clave";
+            $err = "Por favor, introduzca una clave";
         } else {
             $clave = test_input($_POST["clave"]);
-            if (!preg_match("/^\d+$/", $clave)) {
-                $err = "Solo se permiten números positivos sin espacios.";
-            } else {
-                $err = "";
+            if (preg_match('/\s/', $clave)) {
+                $err = "Solo se permiten letras y espacios.";
             }
         }
     }
     return $err;
 }
+
 
 function validar_titulo()
 {
@@ -104,10 +103,8 @@ function validar_titulo()
             $err = "Por favor, introduzca el título";
         } else {
             $titulo = test_input($_POST["titulo"]);
-            if (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ' -]*$/u", $titulo)) {
-                $err = "Solo se permiten números positivos sin espacios.";
-            } else {
-                $err = "";
+            if (strlen($titulo) > 100) { //Límite de 100 caracteres
+                $err = "El título no puede superar los 100 caracteres.";
             }
         }
     }

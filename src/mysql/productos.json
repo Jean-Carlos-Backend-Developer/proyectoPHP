@@ -1,6 +1,7 @@
 [
     {
         "id": 1,
+        "clave": "PROD0001",
         "nombre": "MacBook Pro",
         "descripcion": "Port\u00e1til de alto rendimiento con chip M2",
         "imagen": "static\/images\/macbookpro.jpeg",
@@ -13,9 +14,10 @@
     },
     {
         "id": 6,
-        "nombre": "Asus ROG Ally",
+        "clave": "PROD0006",
+        "nombre": "Asus ROG Ally Z1 Xtreme",
         "descripcion": "PC h\u00edbrido con gr\u00e1fica dedicada NVIDIA",
-        "imagen": "static\/images\/rog-ally.webp",
+        "imagen": "static\/images\/asus_rog_ally.webp",
         "precio": 120.22,
         "fecha": "10\/10\/2023",
         "categorias": [
@@ -25,6 +27,7 @@
     },
     {
         "id": 4,
+        "clave": "PROD0004",
         "nombre": "iPhone 14 Pro",
         "descripcion": "Tel\u00e9fono m\u00f3vil de nueva generaci\u00f3n",
         "imagen": "static\/images\/iphone14pro.jpg",
@@ -36,9 +39,10 @@
     },
     {
         "id": 8,
+        "clave": "PROD0008",
         "nombre": "Samsung Galaxy S23",
         "descripcion": "Smartphone Android de gama alta",
-        "imagen": "static\/images\/galaxys29.jpg",
+        "imagen": "",
         "precio": 1480.99,
         "fecha": "30\/08\/2020",
         "categorias": [
@@ -47,6 +51,7 @@
     },
     {
         "id": 7,
+        "clave": "PROD0007",
         "nombre": "PlayStation 5",
         "descripcion": "Consola de videojuegos de \u00faltima generaci\u00f3n",
         "imagen": "static\/images\/ps5.jpg",
@@ -58,6 +63,7 @@
     },
     {
         "id": 3,
+        "clave": "PROD0003",
         "nombre": "Xbox Series X",
         "descripcion": "Consola potente con soporte para juegos en 4K",
         "imagen": "static\/images\/xboxseriesx.jpg",
@@ -69,6 +75,7 @@
     },
     {
         "id": 5,
+        "clave": "PROD0005",
         "nombre": "AirPods Pro",
         "descripcion": "Auriculares inal\u00e1mbricos con cancelaci\u00f3n de ruido",
         "imagen": "static\/images\/Airpods.jpg",
@@ -80,6 +87,7 @@
     },
     {
         "id": 2,
+        "clave": "PROD0002",
         "nombre": "Logitech MX Master 3",
         "descripcion": "Rat\u00f3n inal\u00e1mbrico ergon\u00f3mico y preciso",
         "imagen": "static\/images\/logitech.jpg",
@@ -87,6 +95,18 @@
         "fecha": "01\/04\/2023",
         "categorias": [
             4
+        ]
+    },
+    {
+        "id": 9,
+        "clave": "PROD009",
+        "nombre": "Huawei watch GT6",
+        "descripcion": "Un reloj",
+        "imagen": "static\/images\/huaweiWatch.jpg",
+        "precio": 0,
+        "fecha": "10\/10\/2023",
+        "categorias": [
+            6
         ]
     }
 ]

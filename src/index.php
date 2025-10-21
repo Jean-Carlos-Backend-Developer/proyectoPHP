@@ -33,6 +33,9 @@ switch ($pagina) {
     case "producto":
         include(__DIR__ . "/views/producto.php");
         break;
+    case "confirmar_producto":
+        include(__DIR__ . "/views/confirmar_producto.php");
+        break;
     case "home":
     case "":
         include(__DIR__ . "/views/productos.php"); // Página principal de productos

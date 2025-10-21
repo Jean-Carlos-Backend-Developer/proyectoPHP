@@ -9,7 +9,6 @@ if (file_exists($ficheroProductos)) {
 
 //Primero uso la función que sobreescribe el array de productos
 $productos = devuelve_array_fecha($productos);
-//var_dump($productos);
 
 $usuario = isset($_SESSION["user_email"]) ? $_SESSION["user_email"] : "";
 
@@ -25,7 +24,6 @@ $productosFiltrados = (array_filter($productos, function ($producto) use ($categ
 }));
 
 $productosPagina = !empty($categoriaId) ? $productosFiltrados : $productos; //Si no hay categoría usamos todos los productos
-
 /*==========================================================================================================================================*/
 //Ordenación por nombre o por fecha
 /*UD 3.2.f
@@ -175,7 +173,7 @@ endif;
                 recuperar el id del producto y mostrarlo en una card en producto.php.
                 */
                 ?>
-                <a href="<?= (!$usuario) ? "/?page=producto&id=" . $producto["id"] : "/?page=crear_editar&productoId=" . $producto["id"]; ?>" class="p-5">
+                <a href="<?= (!$usuario) ? "/?page=producto&id=" . $producto["id"] : "/?page=crear_editar&productoId=" . $producto["id"] ; ?>" class="p-5">
                     <div class="card">
                         <?php
                         /*UD 3.2.d

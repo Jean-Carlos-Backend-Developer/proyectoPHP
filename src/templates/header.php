@@ -61,7 +61,7 @@ $pagina = isset($_GET["page"]) ? $_GET["page"] : "home"; //Recoger la página pa
                 <?php
                 /*UD 3.2.a
                 Para hacer que cuando se haga click en el botón de inicio ir a la página de Inicio
-                usamos la linea de href="/", además 
+                usamos la linea de href="/"
                 */
                 ?>
                 <a href="/?page=home" class="nav-link <?= ($pagina == '' || $pagina == 'home') && !$categoriaId ? 'active' : '' ?>">INICIO</a>

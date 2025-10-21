@@ -8,15 +8,18 @@ $categorias = [
     3 => "Gaming",
     4 => "Accesorios",
     5 => "Portátiles",
+    6 => "Desconocido",
 ];
 
 /*UD 3.3.a
 Construcción del array asociativo con productos de los mas real posible con imagen distita para cada uno 
 para luego poder usarlo en la página productos.php*/
 
+//COMENTADO PORQUE YA USO LOS JSON
 $productos = [
     [
         "id" => 1,
+        "clave" => "PROD0001",
         "nombre" => "MacBook Pro",
         "descripcion" => "Portátil de alto rendimiento con chip M2",
         "imagen" => "static/images/macbookpro.jpeg",
@@ -26,6 +29,7 @@ $productos = [
     ],
     [
         "id" => 6,
+        "clave" => "PROD0006",
         "nombre" => "Asus ROG Ally",
         "descripcion" => "PC híbrido con gráfica dedicada NVIDIA",
         "imagen" => "static/images/rog-ally.webp",
@@ -35,6 +39,7 @@ $productos = [
     ],
     [
         "id" => 4,
+        "clave" => "PROD0004",
         "nombre" => "iPhone 14 Pro",
         "descripcion" => "Teléfono móvil de nueva generación",
         "imagen" => "static/images/iphone14pro.jpg",
@@ -44,15 +49,17 @@ $productos = [
     ],
     [
         "id" => 8,
+        "clave" => "PROD0008",
         "nombre" => "Samsung Galaxy S23",
         "descripcion" => "Smartphone Android de gama alta",
-        "imagen" => "static/images/galaxys29.jpg",
+        "imagen" => "",
         "precio" => 1480.99,
         "fecha" => "30/08/2020",
         "categorias" => [2]
     ],
     [
         "id" => 7,
+        "clave" => "PROD0007",
         "nombre" => "PlayStation 5",
         "descripcion" => "Consola de videojuegos de última generación",
         "imagen" => "static/images/ps5.jpg",
@@ -62,6 +69,7 @@ $productos = [
     ],
     [
         "id" => 3,
+        "clave" => "PROD0003",
         "nombre" => "Xbox Series X",
         "descripcion" => "Consola potente con soporte para juegos en 4K",
         "imagen" => "static/images/xboxseriesx.jpg",
@@ -71,6 +79,7 @@ $productos = [
     ],
     [
         "id" => 5,
+        "clave" => "PROD0005",
         "nombre" => "AirPods Pro",
         "descripcion" => "Auriculares inalámbricos con cancelación de ruido",
         "imagen" => "static/images/Airpods.jpg",
@@ -80,6 +89,7 @@ $productos = [
     ],
     [
         "id" => 2,
+        "clave" => "PROD0002",
         "nombre" => "Logitech MX Master 3",
         "descripcion" => "Ratón inalámbrico ergonómico y preciso",
         "imagen" => "static/images/logitech.jpg",
@@ -88,7 +98,6 @@ $productos = [
         "categorias" => [4]
     ]
 ];
-
 
 //UD 3.3.g
 //Inicialmente, el array $productos estaba sin comentar para poder generar los ficheros JSON 
@@ -123,7 +132,6 @@ if (!file_exists($fichero1) || !file_exists($fichero2)) {
     //Escritura de los ficheros JSON
     file_put_contents($fichero1, $miJson1);
     file_put_contents($fichero2, $miJson2);
-
 }
 
 //Decodifico los array y los guardo en dos fichero json distintos
@@ -133,10 +141,12 @@ $productos2 = json_decode(file_get_contents($fichero2), true);
 $fichero3 = __DIR__ . "/mysql/productos.json";
 
 if (!file_exists($fichero3)) {
-    $productos = array_merge($productos1, $productos2); //Junto ambos ficheros
-    $miJson3 = json_encode($productos, JSON_PRETTY_PRINT); //Codifico el array a JSON
-    file_put_contents($fichero3, $miJson3); //Escribo el fichero JSON
+    $productosJuntos = array_merge($productos1, $productos2); //Junto ambos ficheros
+    //Escribo y codifico el fichero
+    file_put_contents($fichero3, json_encode($productosJuntos, JSON_PRETTY_PRINT));
 }
+//Decodifico el JSON y lo guardo en la variable productos
+$productos = json_decode(file_get_contents($fichero3), true);
 
 
 /*UD 3.2.c

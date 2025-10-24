@@ -204,6 +204,44 @@ function validar_imagen()
     return $err;
 }
 
+function validar_nombre_dosApellidos()
+{
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["nombreApellidos"])) {
+            $err = "Por favor, introduzca nombre y dos apellidos";
+        } else {
+            $name = test_input($_POST["nombreApellidos"]); //Limpiamos el texto
+            $pattern = "/^([A-Za-zÁÉÍÓÚáéíóúÑñ]+)(\s[A-Za-zÁÉÍÓÚáéíóúÑñ]+)?\s[A-Za-zÁÉÍÓÚáéíóúÑñ]+\s[A-Za-zÁÉÍÓÚáéíóúÑñ]+$/";
+            if (!preg_match($pattern, $name)) {
+                $err = "Por favor, introduzca nombre y dos apellidos.";
+            } else {
+                $err = "";
+            }
+        }
+    }
+    return $err;
+}
+
+function validar_dni()
+{
+    $err = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["dni"])) {
+            $err = "Por favor, introduzca un DNI";
+        } else {
+            $dni = test_input($_POST["dni"]); //Limpiamos el texto
+            $pattern = "/^\d{8}[A-Z]$/";
+            if (!preg_match($pattern, $dni)) {
+                $err = "El formato del DNI no es válido.";
+            } else {
+                $err = "";
+            }
+        }
+    }
+    return $err;
+}
+
 
 /* UD 3.5a 
 Creación de función que devuelve el año actual para luego ponerla en el header junto a 

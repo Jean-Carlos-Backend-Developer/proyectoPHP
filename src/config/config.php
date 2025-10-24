@@ -1,6 +1,6 @@
 <?php
-include_once(__DIR__ . "/../datos.php");
-include_once(__DIR__ . "/../utils/utiles.php");
+include_once("datos.php");
+include_once("utils/utiles.php");
 
 if(session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             En caso de que usuario y contraseña sean correctas inicia sesion correctamente y redirige a la página 
             de contacto_lista.php. 
             */ 
-            header("Location:/?page=crear_editar");
+            header("Location:/?page=contacto_lista");
             exit;
 
             // echo "LOGUEADO CON ÉXITO";

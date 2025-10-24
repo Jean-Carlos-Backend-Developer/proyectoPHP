@@ -1,5 +1,5 @@
-<?php include_once(__DIR__ . "/../datos.php"); ?>
-<?php include_once(__DIR__ . "/../utils/utiles.php"); ?>
+<?php include_once("datos.php"); ?>
+<?php include_once("utils/utiles.php"); ?>
 
 <?php
 
@@ -69,8 +69,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 ?>
+
 <div class="container">
-    <form action="/?page=contacto" method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="mb-3">
+            <h1>Rellene el formulario para contactarnos</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
         <!-- Nombre y Apellido -->
         <div class="row">
             <div class="mb-3 col-sm-6 p-0">

@@ -22,8 +22,8 @@ $usuario = isset($_SESSION["user_email"]) ? $_SESSION["user_email"] : ""; //Reco
 $pagina = isset($_GET["page"]) ? $_GET["page"] : "home"; //Recoger la página para activar los botones del header
 
 ?>
-<?php include_once(__DIR__ . "/../datos.php"); ?>
-<?php include_once(__DIR__ . "/../utils/utiles.php"); ?>
+<?php include_once("datos.php"); ?>
+<?php include_once("utils/utiles.php"); ?>
 <html>
 
 <head>
@@ -118,7 +118,17 @@ $pagina = isset($_GET["page"]) ? $_GET["page"] : "home"; //Recoger la página pa
             ?>
             <?php if ($usuario): ?>
                 <li class="nav-item">
-                    <a href="/?page=contacto_lista" class="nav-link <?= ($pagina == "contacto_lista") ? 'active' :  '' ?>">ADMINISTRACIÓN</a>
+                    <?php
+                    /*UD 4.3.a
+                    Crear un menú desplegable en administración que tenga lista de contactos y usuario*/
+                    ?>
+                    <a href="/?page=home" data-bs-toggle="dropdown" class="nav-link dropdown-toggle <?= ($pagina == "contacto_lista" || $pagina == "usuario") ? 'active' :  '' ?>">ADMINISTRACIÓN</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li>
+                            <a class="dropdown-item" href="/?page=contacto_lista">Lista de contactos</a>
+                            <a class="dropdown-item" href="/?page=usuario&usuario=<?= $usuario ?>">Usuarios</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <?php
@@ -146,7 +156,7 @@ $pagina = isset($_GET["page"]) ? $_GET["page"] : "home"; //Recoger la página pa
                 //Ocultar la opción de login si la cookie existe.
                 */
                     ?>
-                    <a href="/?page=login" class="nav-link <?= ($pagina == "logout") ? 'active': '' ?>">LOGIN
+                    <a href="/?page=login" class="nav-link <?= ($pagina == "logout") ? 'active' : '' ?>">LOGIN
                     </a>
                 </li>
             <?php endif; ?>

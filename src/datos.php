@@ -109,8 +109,8 @@ $productos = [
 //Luego, leemos ambos ficheros, los decodificamos y los unimos con array_merge 
 //para reconstruir el array completo de productos.
 
-$fichero1 = __DIR__ . "/mysql/productos1.json";
-$fichero2 = __DIR__ . "/mysql/productos2.json";
+$fichero1 = "mysql/productos1.json";
+$fichero2 = "mysql/productos2.json";
 
 if (!file_exists($fichero1) || !file_exists($fichero2)) {
 
@@ -138,7 +138,7 @@ if (!file_exists($fichero1) || !file_exists($fichero2)) {
 $productos1 = json_decode(file_get_contents($fichero1), true);
 $productos2 = json_decode(file_get_contents($fichero2), true);
 
-$fichero3 = __DIR__ . "/mysql/productos.json";
+$fichero3 = "mysql/productos.json";
 
 if (!file_exists($fichero3)) {
     $productosJuntos = array_merge($productos1, $productos2); //Junto ambos ficheros

@@ -1,5 +1,5 @@
 <?php
-$ficheroProductos = __DIR__ . "/../mysql/productos.json";
+$ficheroProductos = "mysql/productos.json";
 $productos = [];
 
 if (file_exists($ficheroProductos)) {

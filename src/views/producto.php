@@ -1,5 +1,5 @@
-<?php include_once(__DIR__ . "/../datos.php"); ?>
-<?php include_once(__DIR__ . "/../utils/utiles.php"); ?>
+<?php include_once("datos.php"); ?>
+<?php include_once("utils/utiles.php"); ?>
 
 <?php
 //Primero uso la función que sobreescribe el array de productos

@@ -1,5 +1,5 @@
-<?php include_once(__DIR__ . "/../utils/utiles.php"); ?>
-<?php include_once(__DIR__ . "/../config/config.php"); ?>
+<?php include_once("utils/utiles.php"); ?>
+<?php include_once("config/config.php"); ?>
 
 <?php
 /*UD 4.1.a
@@ -11,7 +11,7 @@ pulsarlo ejecuta las validacioes necesarias.
 <div class="container d-flex justify-content-center mt-5">
     <div class="card shadow p-4" style="width: 100%; max-width: 400px; border-radius: 15px;">
         <h2 class="text-center mb-4">Iniciar Sesión</h2>
-        <form action="/?page=login" method="POST">
+        <form method="POST">
             <div class="mb-3">
                 <label for="correoId" class="form-label">Email</label>
                 <input type="text" name="email" class="form-control" id="correoId" placeholder="Su correo electrónico"

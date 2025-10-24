@@ -1,5 +1,5 @@
-<?php include_once(__DIR__ . "/../datos.php"); ?>
-<?php include_once(__DIR__ . "/../utils/utiles.php"); ?>
+<?php include_once("datos.php"); ?>
+<?php include_once("utils/utiles.php"); ?>
 <?php
 
 //Si me llega un id estoy editando.
@@ -57,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($claveErr === "" && $tituloErr === "" && $fechaErr === "" && $descErr === "" && $imgErr === "") {
         $ficheroProductos = "mysql/productos.json";
 
+        $productos = [];
         //Leer productos existentes
         if (file_exists($ficheroProductos)) {
             $productos = json_decode(file_get_contents($ficheroProductos), true);

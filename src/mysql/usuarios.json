@@ -1,22 +1,44 @@
 [
     {
         "email": "juan.perez@example.com",
-        "pass": "abc123"
+        "pass": "abc123",
+        "dni": "12345678A",
+        "nombre": "Juan Perez Mart\u00ednez"
     },
     {
         "email": "maria.garcia@example.com",
-        "pass": "pass4567"
+        "pass": "pass4567",
+        "dni": "87654321B",
+        "nombre": "Maria Garcia Calvo"
     },
     {
-        "email": "carlos.espin@example.com",
-        "pass": "clave890"
+        "email": "antonio.mellado.soriano@example.com",
+        "pass": "clave890",
+        "dni": "11223344C",
+        "nombre": "Antonio Mellado Soriano"
     },
     {
-        "email": "ana.lopez@example.com",
-        "pass": "miPass99"
+        "email": "ruiz.ana.lopez@outlook.es",
+        "pass": "111111",
+        "dni": "44332211Q",
+        "nombre": "Ana Lopez Ruiz"
     },
     {
         "email": "espinjcmorales@gmail.com",
-        "pass": "123456"
+        "pass": "123456",
+        "dni": "98765432E",
+        "nombre": "Jean Carlos Espin Morales"
+    },
+    {
+        "email": "joseangel@gmail.com",
+        "pass": "666666",
+        "dni": "89765438H",
+        "nombre": "Jose Angel Ochoa Morales"
+    },
+    {
+        "email": "migue@gmail.com",
+        "pass": "111111",
+        "dni": "56754567B",
+        "nombre": "Miguel Garc\u00eda Lloret Marquez"
     }
 ]
